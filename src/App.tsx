@@ -2,6 +2,8 @@ import GlobalStyles from "./components/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 // import { Helmet } from "react-helmet";
 import Navbar from "./components/Navbar";
+import RewardSteps from "./components/RewardSteps";
+import { rewardsData } from "./data/rewardsData";
 
 const defaultTheme = {
   primaryColor: "#006241;",
@@ -18,6 +20,7 @@ export default function App() {
         />
       </Helmet> */}
       <Navbar />
+      <RewardSteps content={rewardsData} />
     </ThemeProvider>
   );
 }
