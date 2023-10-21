@@ -4,6 +4,8 @@ import { ThemeProvider } from "styled-components";
 import Navbar from "./components/Header/Navbar";
 import RewardSteps from "./components/Rewards/RewardSteps";
 import { rewardsData } from "./data/rewardsData";
+import { accordionData } from "./data/accordionData";
+import { Accordion } from "./components/Footer/Accordion";
 
 const defaultTheme = {
   primaryColor: "#006241;",
@@ -21,6 +23,7 @@ export default function App() {
       </Helmet> */}
       <Navbar />
       <RewardSteps content={rewardsData} />
+      <Accordion data={accordionData} />
     </ThemeProvider>
   );
 }
