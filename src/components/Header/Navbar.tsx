@@ -7,10 +7,10 @@ import {
   NavListItem,
   NavbarBrand,
 } from "./StyledNav";
-import { LightButton, DarkButton } from "./Button";
+import { LightButton, DarkButton } from "../Button";
 import { HamburgerButton, MobileMenu } from "./HamburgerMenu";
 
-import Logo from "../assets/navbar/logo.svg";
+import Logo from "../../assets/navbar/logo.svg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);

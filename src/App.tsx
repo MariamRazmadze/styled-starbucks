@@ -1,8 +1,8 @@
 import GlobalStyles from "./components/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 // import { Helmet } from "react-helmet";
-import Navbar from "./components/Navbar";
-import RewardSteps from "./components/RewardSteps";
+import Navbar from "./components/Header/Navbar";
+import RewardSteps from "./components/Rewards/RewardSteps";
 import { rewardsData } from "./data/rewardsData";
 
 const defaultTheme = {
