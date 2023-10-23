@@ -4,8 +4,9 @@ import { ThemeProvider } from "styled-components";
 import Navbar from "./components/Header/Navbar";
 import RewardSteps from "./components/Rewards/RewardSteps";
 import { rewardsData } from "./data/rewardsData";
-import { accordionData } from "./data/accordionData";
-import { Accordion } from "./components/Footer/Accordion";
+import Menu from "./components/Menu/Menu";
+import styled from "styled-components";
+import Footer from "./components/Footer/Footer";
 
 const defaultTheme = {
   primaryColor: "#006241;",
@@ -21,9 +22,20 @@ export default function App() {
           rel="stylesheet"
         />
       </Helmet> */}
-      <Navbar />
-      <RewardSteps content={rewardsData} />
-      <Accordion data={accordionData} />
+      <Container>
+        <Navbar />
+        <Menu />
+        <RewardSteps content={rewardsData} />
+        <Footer />
+      </Container>
     </ThemeProvider>
   );
 }
+
+const Container = styled.div`
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.8rem;
+`;

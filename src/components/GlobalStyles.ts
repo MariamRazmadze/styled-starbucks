@@ -20,8 +20,8 @@ body {
   min-height: 100vh;
   padding-bottom: 6rem;
   overflow-x: hidden;
-}
 
+}
 
 
 a {

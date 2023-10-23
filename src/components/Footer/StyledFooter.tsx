@@ -26,8 +26,6 @@ export const AccordionOuterWrapper = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1), 0 -2px 2px rgba(0, 0, 0, 0.06),
-    0 0 2px rgba(0, 0, 0, 0.07);
 `;
 
 export interface ItemProps {
@@ -98,7 +96,6 @@ export const AccordionLi = styled.li`
 
 export const AccorionContainer = styled.div`
   width: 100%;
-  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -107,7 +104,6 @@ export const AccorionContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    margin: 0 1.5rem;
     gap: 1.9rem;
 
     ${Item} {
