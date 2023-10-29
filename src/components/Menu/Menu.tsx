@@ -1,4 +1,4 @@
-import { coffeeData } from "../../data/coffeeData";
+import { coffeeData } from "../../../data/coffeeData";
 import { Coffee } from "./Coffee";
 import styled from "styled-components";
 

@@ -1,0 +1,428 @@
+{
+  "accordion": {
+    "accordion-data": [
+      {
+        "id": 1,
+        "title": "About Us",
+        "content": [
+          { "id": 1, "text": "Our Company", "link": "/placeholder" },
+          { "id": 2, "text": "Our Coffee", "link": "/placeholder" },
+          { "id": 3, "text": "Stories and News", "link": "/placeholder" },
+          { "id": 4, "text": "Starbucks Archive", "link": "/placeholder" },
+          { "id": 5, "text": "Investor Relations", "link": "/placeholder" },
+          { "id": 6, "text": "Customer Service", "link": "/placeholder" },
+          { "id": 7, "text": "Contact Us", "link": "/placeholder" }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Careers",
+        "content": [
+          { "id": 8, "text": "Culture and Values", "link": "/placeholder" },
+          {
+            "id": 9,
+            "text": "Inclusion, Diversity and Equity",
+            "link": "/placeholder"
+          },
+          {
+            "id": 10,
+            "text": "College Achievement Plan",
+            "link": "/placeholder"
+          },
+          { "id": 11, "text": "Alumni Community", "link": "/placeholder" },
+          { "id": 12, "text": "U.S. Careers", "link": "/placeholder" },
+          { "id": 13, "text": "International Careers", "link": "/placeholder" }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Social Impact",
+        "content": [
+          { "id": 14, "text": "People", "link": "/placeholder" },
+          { "id": 15, "text": "Planet", "link": "/placeholder" },
+          {
+            "id": 16,
+            "text": "Environmental and Social Impact Reporting",
+            "link": "/placeholder"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "For Business Partners",
+        "content": [
+          {
+            "id": 17,
+            "text": "Landlord Support Center",
+            "link": "/placeholder"
+          },
+          { "id": 18, "text": "Suppliers", "link": "/placeholder" },
+          {
+            "id": 19,
+            "text": "Corporate Gift Card Sales",
+            "link": "/placeholder"
+          },
+          {
+            "id": 20,
+            "text": "Office and Foodservice Coffee",
+            "link": "/placeholder"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Order and Pick Up",
+        "content": [
+          { "id": 21, "text": "Order on the App", "link": "/placeholder" },
+          { "id": 22, "text": "Suppliers", "link": "/placeholder" },
+          { "id": 23, "text": "Order on the Web", "link": "/placeholder" },
+          { "id": 24, "text": "Delivery", "link": "/placeholder" },
+          {
+            "id": 25,
+            "text": "Order and Pick Up Options",
+            "link": "/placeholder"
+          },
+          {
+            "id": 26,
+            "text": "Explore and Find Coffee for Home",
+            "link": "/placeholder"
+          }
+        ]
+      }
+    ]
+  },
+  "coffee": {
+    "coffee-data": [
+      {
+        "id": 1,
+        "name": "Caffè Americano",
+        "photoName": "coffees/americano.avif",
+        "type": "Americanos",
+        "unavailable": false
+      },
+      {
+        "id": 2,
+        "name": "Featured Blonde Roast",
+        "photoName": "coffees/featured-blonde-roast.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 3,
+        "name": "Featured Medium Roast Pike Place® Roast",
+        "photoName": "coffees/featured-medium-roast.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 4,
+        "name": "Featured Dark Roast",
+        "photoName": "coffees/featured-dark-roast.avif",
+        "type": "Brewed Coffees",
+        "unavailable": true
+      },
+      {
+        "id": 5,
+        "name": "Featured Blonde Roast Veranda Blend®",
+        "photoName": "coffees/veranda-blend.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 6,
+        "name": "Featured Decaf Roast Decaf Pike Place® Roast",
+        "photoName": "coffees/veranda-blend.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 7,
+        "name": "Featured Dark Roast Caffè Verona®",
+        "photoName": "coffees/veranda-blend.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 8,
+        "name": "Caffè Misto",
+        "photoName": "coffees/misto.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 9,
+        "name": "Clover® Starbucks Reserve® Rwanda Sholi",
+        "photoName": "coffees/rwanda.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 10,
+        "name": "Clover® Starbucks Reserve® Papua New Guinea Moanti",
+        "photoName": "coffees/papua-new-guinea.avif",
+        "type": "Brewed Coffees",
+        "unavailable": true
+      },
+      {
+        "id": 11,
+        "name": "Clover® Starbucks Reserve® Costa Rica Naranjo",
+        "photoName": "coffees/costa-rica.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 12,
+        "name": "Clover® Malawi Sable Farms Starbucks Reserve®",
+        "photoName": "coffees/malawi.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 13,
+        "name": "Clover® Starbucks Reserve® Vietnam Da Lat",
+        "photoName": "coffees/vietnam.avif",
+        "type": "Brewed Coffees",
+        "unavailable": false
+      },
+      {
+        "id": 14,
+        "name": "Cappuccino",
+        "photoName": "coffees/cappuccino.avif",
+        "type": "Cappuccinos",
+        "unavailable": false
+      },
+      {
+        "id": 15,
+        "name": "Espresso",
+        "photoName": "coffees/espresso.avif",
+        "type": "Espresso Shots",
+        "unavailable": false
+      },
+      {
+        "id": 16,
+        "name": "Espresso Con Panna",
+        "photoName": "coffees/espresso-con-panna.avif",
+        "type": "Espresso Shots",
+        "unavailable": false
+      },
+      {
+        "id": 17,
+        "name": "Flat White",
+        "photoName": "coffees/flat-white.avif",
+        "type": "Flat Whites",
+        "unavailable": false
+      },
+      {
+        "id": 18,
+        "name": "Honey Almondmilk Flat White",
+        "photoName": "coffees/honey-almond-milk.avif",
+        "type": "Flat Whites",
+        "unavailable": false
+      },
+      {
+        "id": 19,
+        "name": "Pumpkin Spice Latte",
+        "photoName": "coffees/pumpkin-latte.avif",
+        "type": "Lattes",
+        "unavailable": false
+      },
+      {
+        "id": 20,
+        "name": "Oleato™ Caffé Latte with Oatmilk",
+        "photoName": "coffees/oleato.avif",
+        "type": "Lattes",
+        "unavailable": true
+      },
+      {
+        "id": 21,
+        "name": "Caffè Latte",
+        "photoName": "coffees/latte.avif",
+        "type": "Lattes",
+        "unavailable": false
+      },
+      {
+        "id": 22,
+        "name": "Cinnamon Dolce Latte",
+        "photoName": "coffees/cinnamon-dolce-latte.avif",
+        "type": "Lattes",
+        "unavailable": false
+      },
+      {
+        "id": 23,
+        "name": "Starbucks Reserve® Latte",
+        "photoName": "coffees/reserve-latte.avif",
+        "type": "Lattes",
+        "unavailable": false
+      },
+      {
+        "id": 24,
+        "name": "Starbucks Reserve® Hazelnut Bianco Latte",
+        "photoName": "coffees/hazelnut-latte.avif",
+        "type": "Lattes",
+        "unavailable": false
+      },
+      {
+        "id": 25,
+        "name": "Starbucks® Blonde Vanilla Latte",
+        "photoName": "coffees/latte.avif",
+        "type": "Lattes",
+        "unavailable": false
+      },
+      {
+        "id": 26,
+        "name": "Apple Crisp Oatmilk Macchiato",
+        "photoName": "coffees/oatmilk-macchiato.avif",
+        "type": "Macchiatos",
+        "unavailable": false
+      },
+      {
+        "id": 27,
+        "name": "Caramel Macchiato",
+        "photoName": "coffees/caramel-macchiato.avif",
+        "type": "Macchiatos",
+        "unavailable": false
+      },
+      {
+        "id": 28,
+        "name": "Espresso Macchiato",
+        "photoName": "coffees/espresso-macchiato.avif",
+        "type": "Macchiatos",
+        "unavailable": false
+      },
+      {
+        "id": 29,
+        "name": "Caffè Mocha",
+        "photoName": "coffees/mocha.avif",
+        "type": "Mochas",
+        "unavailable": false
+      },
+      {
+        "id": 30,
+        "name": "Starbucks Reserve® Dark Chocolate Mocha",
+        "photoName": "coffees/dark-chocolate-mocha.avif",
+        "type": "Mochas",
+        "unavailable": false
+      },
+      {
+        "id": 31,
+        "name": "White Chocolate Mocha",
+        "photoName": "coffees/white-chocolate-mocha.avif",
+        "type": "Mochas",
+        "unavailable": false
+      }
+    ]
+  },
+  "home": {
+    "home-data": [
+      {
+        "id": 1,
+        "title": "Hooray for Yay Day",
+        "promo": "Starbucks® Rewards members, enjoy half off ANY handcrafted drink from 12-6 PM this Thursday, 10/26.*",
+        "photoName": "box/yay.webp",
+        "buttonText": "Join now",
+        "backgroundColor": "#006241",
+        "buttonColor": "#fff",
+        "buttonHoverColor": "#014e34"
+      },
+      {
+        "id": 2,
+        "title": "Share an enchanting treat",
+        "promo": "Surprise someone special with a gift that casts a spell.",
+        "photoName": "box/halloween.jpg",
+        "buttonText": "Send an eGift",
+        "backgroundColor": "#1e3932",
+        "buttonColor": "#fff",
+        "buttonHoverColor": "#192e29"
+      },
+      {
+        "id": 3,
+        "title": "Long live pumpkin",
+        "promo": "Break for a classic Pumpkin Spice Latte topped with whipped cream and pumpkin-pie spices.",
+        "photoName": "box/pumpkin.webp",
+        "buttonText": "Order now",
+        "backgroundColor": "#d69a2d",
+        "buttonColor": "#000",
+        "buttonHoverColor": "#a28538"
+      },
+      {
+        "id": 4,
+        "title": "New apple in the bunch",
+        "promo": "Introducing our Iced Apple Crisp Oatmilk Shaken Espresso with a perfectly balanced taste.",
+        "photoName": "box/apple.jpg",
+        "buttonText": "Order now",
+        "backgroundColor": "#76232f",
+        "buttonColor": "#fff",
+        "buttonHoverColor": "#5e1c27"
+      },
+      {
+        "id": 5,
+        "title": "Good idea, chai lovers",
+        "promo": "Try the new coffee-free Iced Pumpkin Cream Chai Tea Latte, inspired by our customers. It’s fall in a cup.",
+        "photoName": "box/chai.webp",
+        "buttonText": "Order now",
+        "backgroundColor": "#b04a5a",
+        "buttonColor": "#fff",
+        "buttonHoverColor": "#8c3d4a"
+      },
+      {
+        "id": 6,
+        "title": "Whoo to the hoo",
+        "promo": "Be on the lookout for an adorable Owl Cake Pop coated in chocolaty icing.",
+        "photoName": "box/owl.jpg",
+        "buttonText": "Order now",
+        "backgroundColor": "#1e3932",
+        "buttonColor": "#fff",
+        "buttonHoverColor": "#192e29"
+      },
+      {
+        "id": 7,
+        "title": "Pumpkin spice, delivered so nice",
+        "promo": "Your fall favorites, at your door—when you order Starbucks delivery with DoorDash.**",
+        "photoName": "box/deliver.jpg",
+        "buttonText": "Order now",
+        "backgroundColor": "#1e3932",
+        "buttonColor": "#fff",
+        "buttonHoverColor": "#192e29"
+      }
+    ]
+  },
+  "rewards": {
+    "rewards-data": [
+      {
+        "id": 1,
+        "title": "Customize your drink",
+        "promo": "Make your drink just right with an extra espresso shot, nondairy milk or a dash of your favorite syrup.",
+        "photoName": "rewards/025.webp",
+        "number": 25
+      },
+      {
+        "id": 2,
+        "title": "Brewed hot or iced coffee or tea, bakery item, packaged snack and more",
+        "promo": "Treat yourself to an iced coffee, buttery croissant, bag of chips and more.",
+        "photoName": "rewards/100.webp",
+        "number": 100
+      },
+      {
+        "id": 3,
+        "title": "Handcrafted drink (Cold Brew, lattes and more) or hot breakfast",
+        "promo": "Turn good mornings great with a delicious handcrafted drink of your choice, breakfast sandwich or oatmeal on us.",
+        "photoName": "rewards/200.webp",
+        "number": 200
+      },
+      {
+        "id": 4,
+        "title": "Sandwich, protein box or at-home coffee",
+        "promo": "Enjoy a PM pick-me-up with a lunch sandwich, protein box or a bag of coffee—including Starbucks VIA Instant®.",
+        "photoName": "rewards/300.webp",
+        "number": 300
+      },
+      {
+        "id": 5,
+        "title": "Select Starbucks® merchandise",
+        "promo": "Take home a signature cup, drink tumbler or your choice of coffee merch up to $20.",
+        "photoName": "rewards/400.webp",
+        "number": 400
+      }
+    ]
+  }
+}

@@ -1,4 +1,4 @@
-import { homepageData } from "../../data/homepageData";
+import { homepageData } from "../../../data/homepageData";
 import { BoxItem } from "./BoxItem";
 
 export default function Homepage() {

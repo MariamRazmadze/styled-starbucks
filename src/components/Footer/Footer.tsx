@@ -1,4 +1,4 @@
-import { accordionData } from "../../data/accordionData";
+import { accordionData } from "../../../data/accordionData";
 import { Accordion } from "./Accordion";
 import SocialIcons from "./SocialIcons";
 import styled from "styled-components";

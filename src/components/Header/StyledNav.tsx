@@ -3,9 +3,9 @@ import styled from "styled-components";
 export const Nav = styled.nav`
   list-style: none;
   width: 100%;
-  height: auto;
+  height: 100px;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 0 4rem;
   box-shadow: 0 1px 3px rgb(0 0 0 / 10%), 0 2px 2px rgb(0 0 0 / 6%),
     0 0 2px rgb(0 0 0 /7%);
   font-size: 14px;
@@ -21,12 +21,14 @@ export const NavbarBrand = styled.div`
 
 export const NavbarContainer = styled.div`
   display: flex;
+  height: 100%;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const NavbarLeft = styled.ul`
   display: flex;
+  height: 100%;
   align-items: center;
   text-transform: uppercase;
   flex: 1;
@@ -39,6 +41,8 @@ export const NavbarLeft = styled.ul`
 export const NavbarRight = styled.ul`
   display: flex;
   align-items: center;
+  height: 100%;
+
   img {
     margin-right: 10px;
   }
@@ -57,11 +61,19 @@ export const NavbarRight = styled.ul`
 export const NavListItem = styled.li`
   margin: 0 15px;
   font-weight: 700;
+  height: 100%;
+  display: flex;
+  align-items: center;
   svg {
     margin-right: 10px;
   }
   a {
     text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 7px;
+    border-bottom: 7px solid transparent;
   }
   a:hover {
     color: ${({ theme }) => theme.primaryColor};
@@ -70,5 +82,8 @@ export const NavListItem = styled.li`
     svg {
       fill: ${({ theme }) => theme.primaryColor};
     }
+  }
+  & .active {
+    border-bottom-color: ${({ theme }) => theme.primaryColor};
   }
 `;

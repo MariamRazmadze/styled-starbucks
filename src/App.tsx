@@ -2,7 +2,7 @@ import GlobalStyles from "./components/GlobalStyles";
 import { ThemeProvider } from "styled-components";
 import Navbar from "./components/Header/Navbar";
 import RewardSteps from "./components/Rewards/RewardSteps";
-import { rewardsData } from "./data/rewardsData";
+import { rewardsData } from "../data/rewardsData";
 import Menu from "./components/Menu/Menu";
 import styled from "styled-components";
 import Footer from "./components/Footer/Footer";
@@ -22,7 +22,7 @@ export default function App() {
         <Container>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Homepage />} />
+            <Route index element={<Homepage />} />
             <Route path="menu" element={<Menu />} />
             <Route
               path="rewards"
