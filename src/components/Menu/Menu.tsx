@@ -1,4 +1,3 @@
-import { coffeeData } from "../../../data/coffeeData";
 import { Coffee } from "./Coffee";
 import styled from "styled-components";
 
@@ -57,7 +56,7 @@ const CoffeeHeading = styled.h1`
   border-bottom: 1px solid lightgray;
 `;
 
-interface CoffeeData {
+export interface CoffeeData {
   id: string;
   name: string;
   photoName: string;
@@ -77,17 +76,20 @@ function groupBy(array: CoffeeData[], key: "type"): GroupedCoffees {
     return result;
   }, {});
 }
-export default function Menu() {
-  const coffees: CoffeeData[] = coffeeData;
 
-  const groupedCoffees = groupBy(coffeeData, "type");
+interface MenuProps {
+  coffees: CoffeeData[] | undefined;
+}
+export default function Menu({ coffees }: MenuProps) {
+  const coffeeArray = coffees || [];
+  const groupedCoffees = groupBy(coffeeArray, "type");
 
   const sortedTypes = Object.keys(groupedCoffees).sort();
 
   return (
     <MenuContainer>
       <MenuH2>Menu/Hot Coffees</MenuH2>
-      {coffees.length > 0 ? (
+      {coffeeArray.length > 0 ? (
         <>
           <MainTitle>Hot Coffees</MainTitle>
           {sortedTypes.map(
