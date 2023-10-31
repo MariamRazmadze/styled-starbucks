@@ -36,6 +36,9 @@ export default function Navbar() {
             <NavLink to="/rewards">Rewards</NavLink>
           </NavListItem>
           <NavListItem>
+            <NavLink to="/quiz">Coffee Quiz</NavLink>
+          </NavListItem>
+          <NavListItem>
             <NavLink to="/gift">Gift Cards</NavLink>
           </NavListItem>
         </NavbarLeft>
@@ -80,6 +83,9 @@ export default function Navbar() {
           </li>
           <li>
             <NavLink to="/rewards">Rewards</NavLink>
+          </li>
+          <li>
+            <NavLink to="/quiz">Coffee Quiz</NavLink>
           </li>
           <li>
             <NavLink to="/gift">Gift Cards</NavLink>
