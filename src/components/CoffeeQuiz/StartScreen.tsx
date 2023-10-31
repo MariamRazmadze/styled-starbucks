@@ -1,4 +1,15 @@
-import { Action } from "../../App";
+import { QuizAction } from "../../App";
+import { Button } from "../Button";
+import styled from "styled-components";
+
+const QuizButton = styled(Button)`
+  background-color: #006241;
+  max-width: 150px;
+  color: white;
+  font-size: 16px;
+  padding: 15px 30px;
+`;
+
 import {
   StarterTexts,
   QuizContainer,
@@ -14,7 +25,7 @@ import {
 
 interface StartScreenProps {
   numQuestions?: number;
-  dispatch: React.Dispatch<Action>;
+  dispatch: React.Dispatch<QuizAction>;
 }
 
 export default function StartScreen({
@@ -48,12 +59,9 @@ export default function StartScreen({
             Take our new Coffee Quiz to discover how deep your coffee knowledge
             really goes!
           </h2>
-          <button
-            className="btn btn-ui"
-            onClick={() => dispatch({ type: "start" })}
-          >
+          <QuizButton onClick={() => dispatch({ type: "start" })}>
             Let's start
-          </button>
+          </QuizButton>
         </QuizFooter>
       </StarterTexts>
     </QuizContainer>
