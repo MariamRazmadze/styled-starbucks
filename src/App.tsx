@@ -19,9 +19,12 @@ import FinishScreen from "./components/CoffeeQuiz/FinishScreen";
 import NextButton from "./components/CoffeeQuiz/NextButton";
 import QuestionComponent from "./components/CoffeeQuiz/QuestionComponent";
 import StartScreen from "./components/CoffeeQuiz/StartScreen";
+import AuthForm from "./components/AuthenticationContainer/AuthForm";
 
 const defaultTheme = {
   primaryColor: "#006241;",
+  greenAccent: "#00754a",
+  secondaryBackground: " #d4e9e2;",
 };
 
 interface CoffeeState {
@@ -225,6 +228,11 @@ export default function App() {
             <Route
               path="rewards"
               element={<RewardSteps content={rewardsData} />}
+            />
+            <Route path="login" element={<AuthForm defaultIsLogin={true} />} />
+            <Route
+              path="register"
+              element={<AuthForm defaultIsLogin={false} />}
             />
             <Route path="*" element={<PageNotFound />} />
           </Routes>

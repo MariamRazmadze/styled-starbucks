@@ -57,7 +57,7 @@ type MobileMenuProps = {
 
 export const MobileMenu = styled.div<MobileMenuProps>`
   position: fixed;
-  top: 85px;
+  top: 10rem;
   right: 0;
   background-color: #ffffff;
   color: black;

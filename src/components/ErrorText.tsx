@@ -10,5 +10,5 @@ const StyledError = styled.p`
 `;
 
 export default function ErrorText() {
-  return <StyledError>There was an error fecthing Menu.</StyledError>;
+  return <StyledError>There was an error fecthing data.</StyledError>;
 }
