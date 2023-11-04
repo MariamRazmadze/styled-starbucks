@@ -27,6 +27,8 @@ const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
   const authCtx = useContext(AuthContext);
   const [isLogin, setIsLogin] = useState(defaultIsLogin);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -36,7 +38,7 @@ const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
     setIsLogin(defaultIsLogin);
   }, [defaultIsLogin]);
 
-  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const enteredUsername = usernameInputRef.current?.value;
@@ -49,42 +51,43 @@ const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
     } else {
       url = "https://starbucks.pythonanywhere.com/register";
     }
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify({
-        username: enteredUsername,
-        password: enteredPassword,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        setIsLoading(false);
-        if (res.ok) {
-          return res.json();
-        } else {
-          return res.json().then((data) => {
-            let errorMessage = "Authentication failed!";
-            if (data && data.error && data.error.message) {
-              errorMessage = data.error.message;
-            }
 
-            throw new Error(errorMessage);
-          });
-        }
-      })
-      .then((data) => {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          username: enteredUsername,
+          password: enteredPassword,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      setIsLoading(false);
+      if (res.ok) {
+        const data = await res.json();
         console.log(data);
         const oneHourFromNow = new Date().getTime() + 60 * 60 * 1000;
         const expirationTime = new Date(oneHourFromNow);
 
         authCtx.login(data.access_token, expirationTime.toISOString());
         navigate("/");
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+      } else {
+        const data = await res.json();
+        let errorMessage = "Authentication failed!";
+        if (data && data.error && data.error.message) {
+          errorMessage = data.error.message;
+        }
+
+        throw new Error(errorMessage);
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(true);
+        setErrorMessage(err.message);
+      }
+    }
   };
 
   return (
@@ -102,7 +105,7 @@ const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
                 <Star>*</Star> Username or email address
               </>
             }
-            className="mb-3 "
+            className={`mb-3 ${error ? "error" : ""}`}
           >
             <Form.Control
               type="text"
@@ -110,7 +113,9 @@ const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
               ref={usernameInputRef}
               minLength={3}
               required
+              className={error ? "error" : ""}
             />
+            {error && <div className="error-message">{errorMessage}</div>}
           </FloatingLabel>
           <FloatingLabel
             controlId="floatingPassword"
@@ -119,6 +124,7 @@ const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
                 <Star>*</Star> Password
               </>
             }
+            className={error ? "error" : ""}
           >
             <Form.Control
               type="password"
@@ -126,8 +132,11 @@ const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
               minLength={5}
               required
               ref={passwordInputRef}
+              className={error ? "error" : ""}
             />
+            {error && <div className="error-message">{errorMessage}</div>}
           </FloatingLabel>
+
           <Actions>
             {!isLoading && (
               <WaveButton>{isLogin ? "Login" : "Create Account"}</WaveButton>

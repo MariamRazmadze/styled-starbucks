@@ -37,6 +37,16 @@ p {
   line-height: 1.7;
 }
 
+.error {
+  border-color: red;
+}
+.error label {
+  color: red;
+}
+
+.error-message {
+  color: red;
+}
 
 
 `;

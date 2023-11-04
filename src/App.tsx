@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./components/HomePage/Homepage";
 import PageNotFound from "./components/PageNotFound";
 import MainMenu from "./components/Menu/MainMenu";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useRef } from "react";
 import { CoffeeData } from "./components/Menu/Menu";
 import Loader from "./components/Loader";
 import ErrorText from "./components/ErrorText";
@@ -150,20 +150,29 @@ export default function App() {
     coffeeInitialState
   );
 
-  useEffect(() => {
-    fetch("https://starbucksapi.pythonanywhere.com/coffees")
-      .then((res: Response) => res.json())
-      .then((data) =>
-        dispatchCoffee({ type: "dataReceived", payload: data.coffeeData })
-      )
-      .catch((err) => dispatchCoffee({ type: "dataFailed" }));
+  const firstRender = useRef(true);
 
-    fetch("https://starbucksapi.pythonanywhere.com/quiz")
-      .then((res: Response) => res.json())
-      .then((data) =>
-        dispatchQuiz({ type: "dataReceived", questionsPayload: data.questions })
-      )
-      .catch((err) => dispatchQuiz({ type: "dataFailed" }));
+  useEffect(() => {
+    if (firstRender.current) {
+      firstRender.current = false;
+
+      fetch("https://starbucksapi.pythonanywhere.com/coffees")
+        .then((res: Response) => res.json())
+        .then((data) =>
+          dispatchCoffee({ type: "dataReceived", payload: data.coffeeData })
+        )
+        .catch((err) => dispatchCoffee({ type: "dataFailed" }));
+
+      fetch("https://starbucksapi.pythonanywhere.com/quiz")
+        .then((res: Response) => res.json())
+        .then((data) =>
+          dispatchQuiz({
+            type: "dataReceived",
+            questionsPayload: data.questions,
+          })
+        )
+        .catch((err) => dispatchQuiz({ type: "dataFailed" }));
+    }
   }, []);
 
   return (
