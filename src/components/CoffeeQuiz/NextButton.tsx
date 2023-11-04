@@ -21,7 +21,11 @@ const StyledNextButton = styled.button`
   background-color: transparent;
   border: none;
   &:hover {
-    color: #d4e9e2;
+    color: ${({ theme }) => theme.secondaryBackground};
+  }
+  @media (max-width: 768px) {
+    top: 20%;
+    left: 50%;
   }
 `;
 

@@ -1,8 +1,14 @@
 import { ReactNode } from "react";
+import styled from "styled-components";
 
 interface MainQuizProps {
   children: ReactNode;
 }
+
+const StyledMainQuiz = styled.main`
+  width: 100vw;
+  height: 100vh;
+`;
 export default function MainQuiz({ children }: MainQuizProps) {
-  return <main className="main">{children}</main>;
+  return <StyledMainQuiz>{children}</StyledMainQuiz>;
 }

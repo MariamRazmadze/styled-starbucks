@@ -151,14 +151,14 @@ export default function App() {
   );
 
   useEffect(() => {
-    fetch("http://localhost:5000/db")
+    fetch("https://starbucksapi.pythonanywhere.com/coffees")
       .then((res: Response) => res.json())
       .then((data) =>
         dispatchCoffee({ type: "dataReceived", payload: data.coffeeData })
       )
       .catch((err) => dispatchCoffee({ type: "dataFailed" }));
 
-    fetch("http://localhost:5000/db")
+    fetch("https://starbucksapi.pythonanywhere.com/quiz")
       .then((res: Response) => res.json())
       .then((data) =>
         dispatchQuiz({ type: "dataReceived", questionsPayload: data.questions })

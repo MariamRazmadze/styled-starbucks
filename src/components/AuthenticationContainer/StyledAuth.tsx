@@ -4,6 +4,7 @@ import { Button } from "../Button";
 export const StyledAuth = styled.section`
   margin: 0 auto;
   width: 500px;
+  z-index: 0;
   transition-delay: 100ms;
   border-radius: 12px;
   background-color: white;

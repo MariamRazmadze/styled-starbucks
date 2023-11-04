@@ -31,6 +31,7 @@ export const NavbarLeft = styled.ul`
   height: 100%;
   align-items: center;
   text-transform: uppercase;
+  margin-bottom: 0;
   flex: 1;
   margin-left: 20px;
   @media (max-width: 768px) {

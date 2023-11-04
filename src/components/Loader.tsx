@@ -42,7 +42,7 @@ export default function Loader() {
   return (
     <LoaderContainer>
       <StyledLoader></StyledLoader>
-      <p>Loading Menu...</p>
+      <p>Loading...</p>
     </LoaderContainer>
   );
 }

@@ -60,6 +60,7 @@ export const MobileMenu = styled.div<MobileMenuProps>`
   top: 10rem;
   right: 0;
   background-color: #ffffff;
+  z-index: 1;
   color: black;
   width: 90%;
   height: 100%;
