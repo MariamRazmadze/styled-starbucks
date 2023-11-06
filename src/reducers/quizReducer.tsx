@@ -1,4 +1,4 @@
-import { QuizState, QuizAction } from "../types/allInterfaces";
+import { Question } from "../types/allInterfaces";
 
 export const quizInitialState: QuizState = {
   questions: [],
@@ -7,6 +7,20 @@ export const quizInitialState: QuizState = {
   answer: null,
   points: 0,
 };
+
+export interface QuizState {
+  questions?: Question[];
+  quizStatus: string;
+  index: number;
+  answer?: number | null;
+  points?: number | null;
+}
+
+export interface QuizAction {
+  type: string;
+  questionsPayload?: Question[];
+  answerPayload?: number;
+}
 
 export function quizReducer(state: QuizState, action: QuizAction): QuizState {
   switch (action.type) {

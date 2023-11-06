@@ -3,6 +3,7 @@ import { ThemeProvider } from "styled-components";
 import Navbar from "./components/Header/Navbar";
 import RewardSteps from "./components/Rewards/RewardSteps";
 import { rewardsData } from "../data/rewardsData";
+import Menu from "./components/Menu/Menu";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from "./components/HomePage/Homepage";
@@ -17,11 +18,9 @@ import NextButton from "./components/CoffeeQuiz/NextButton";
 import QuestionComponent from "./components/CoffeeQuiz/QuestionComponent";
 import StartScreen from "./components/CoffeeQuiz/StartScreen";
 import AuthForm from "./components/AuthenticationContainer/AuthForm";
-import { coffeeReducer, coffeeInitialState } from "./reducers/coffeeReducer";
 import { quizReducer, quizInitialState } from "./reducers/quizReducer";
+import { coffeeReducer, coffeeInitialState } from "./reducers/coffeeReducer";
 import { QuestionContainer, Container } from "./moreStyles/appStyles";
-import Menu from "./components/Menu/Menu";
-import { CoffeeDataResponse, QuizDataResponse } from "./types/allInterfaces";
 import { Navigate } from "react-router-dom";
 import AppLayout from "./components/StoreLocator/AppLayout";
 import CityList from "./components/StoreLocator/CityList";
@@ -33,19 +32,6 @@ const defaultTheme = {
   secondaryBackground: " #d4e9e2;",
 };
 
-const updateCoffeeAction = (data: CoffeeDataResponse) => {
-  return {
-    type: "dataReceived",
-    payload: data.coffeeData,
-  };
-};
-
-const updateQuizAction = (data: QuizDataResponse) => {
-  return {
-    type: "dataReceived",
-    questionsPayload: data.quizData,
-  };
-};
 export default function App() {
   const [{ questions, quizStatus, index, answer, points }, dispatchQuiz] =
     useReducer(quizReducer, quizInitialState);
@@ -68,12 +54,19 @@ export default function App() {
 
       fetch("https://starbucksapi.pythonanywhere.com/coffees")
         .then((res: Response) => res.json())
-        .then((data) => dispatchCoffee(updateCoffeeAction(data)))
+        .then((data) =>
+          dispatchCoffee({ type: "dataReceived", payload: data.coffeeData })
+        )
         .catch((err) => dispatchCoffee({ type: "dataFailed" }));
 
       fetch("https://starbucksapi.pythonanywhere.com/quiz")
         .then((res: Response) => res.json())
-        .then((data) => dispatchQuiz(updateQuizAction(data)))
+        .then((data) =>
+          dispatchQuiz({
+            type: "dataReceived",
+            questionsPayload: data.questions,
+          })
+        )
         .catch((err) => dispatchQuiz({ type: "dataFailed" }));
     }
   }, []);
