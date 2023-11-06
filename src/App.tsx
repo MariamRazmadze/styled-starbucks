@@ -22,6 +22,10 @@ import { quizReducer, quizInitialState } from "./reducers/quizReducer";
 import { QuestionContainer, Container } from "./moreStyles/appStyles";
 import Menu from "./components/Menu/Menu";
 import { CoffeeDataResponse, QuizDataResponse } from "./types/allInterfaces";
+import { Navigate } from "react-router-dom";
+import AppLayout from "./components/StoreLocator/AppLayout";
+import CityList from "./components/StoreLocator/CityList";
+import { CitiesProvider } from "./contexts/CitiesContext";
 
 const defaultTheme = {
   primaryColor: "#006241;",
@@ -75,78 +79,89 @@ export default function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyles />
-        <Container>
-          <Navbar />
-          <Routes>
-            <Route index element={<Homepage />} />
-            <Route
-              path="menu"
-              element={
-                <MainMenu>
-                  {coffeeStatus === "loading" && <Loader />}
-                  {coffeeStatus === "error" && <ErrorText />}
-                  {coffeeStatus === "ready" && <Menu coffees={coffees} />}
-                </MainMenu>
-              }
-            />
-            <Route
-              path="quiz"
-              element={
-                <MainQuiz>
-                  {quizStatus === "loading" && <Loader />}
-                  {quizStatus === "error" && <ErrorText />}
-                  {quizStatus === "ready" && (
-                    <StartScreen
-                      numQuestions={numQuestions}
-                      dispatch={dispatchQuiz}
-                    />
-                  )}
-                  {quizStatus === "active" && questions && questions[index] && (
-                    <QuestionContainer>
-                      <QuestionComponent
-                        question={questions[index]}
-                        dispatch={dispatchQuiz}
-                        answer={answer}
-                        index={index}
+    <ThemeProvider theme={defaultTheme}>
+      <CitiesProvider>
+        <BrowserRouter>
+          <GlobalStyles />
+          <Container>
+            <Navbar />
+            <Routes>
+              <Route index element={<Homepage />} />
+              <Route
+                path="menu"
+                element={
+                  <MainMenu>
+                    {coffeeStatus === "loading" && <Loader />}
+                    {coffeeStatus === "error" && <ErrorText />}
+                    {coffeeStatus === "ready" && <Menu coffees={coffees} />}
+                  </MainMenu>
+                }
+              />
+              <Route
+                path="quiz"
+                element={
+                  <MainQuiz>
+                    {quizStatus === "loading" && <Loader />}
+                    {quizStatus === "error" && <ErrorText />}
+                    {quizStatus === "ready" && (
+                      <StartScreen
                         numQuestions={numQuestions}
+                        dispatch={dispatchQuiz}
+                      />
+                    )}
+                    {quizStatus === "active" &&
+                      questions &&
+                      questions[index] && (
+                        <QuestionContainer>
+                          <QuestionComponent
+                            question={questions[index]}
+                            dispatch={dispatchQuiz}
+                            answer={answer}
+                            index={index}
+                            numQuestions={numQuestions}
+                            points={points}
+                            maxPossiblePoints={maxPossiblePoints}
+                          />
+                          <NextButton
+                            dispatch={dispatchQuiz}
+                            answer={answer}
+                            index={index}
+                            numQuestions={numQuestions}
+                          />
+                        </QuestionContainer>
+                      )}
+                    {quizStatus === "finished" && (
+                      <FinishScreen
                         points={points}
                         maxPossiblePoints={maxPossiblePoints}
-                      />
-                      <NextButton
                         dispatch={dispatchQuiz}
-                        answer={answer}
-                        index={index}
-                        numQuestions={numQuestions}
                       />
-                    </QuestionContainer>
-                  )}
-                  {quizStatus === "finished" && (
-                    <FinishScreen
-                      points={points}
-                      maxPossiblePoints={maxPossiblePoints}
-                      dispatch={dispatchQuiz}
-                    />
-                  )}
-                </MainQuiz>
-              }
-            />
-            <Route
-              path="rewards"
-              element={<RewardSteps content={rewardsData} />}
-            />
-            <Route path="login" element={<AuthForm defaultIsLogin={true} />} />
-            <Route
-              path="register"
-              element={<AuthForm defaultIsLogin={false} />}
-            />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-          <Footer />
-        </Container>
-      </ThemeProvider>
-    </BrowserRouter>
+                    )}
+                  </MainQuiz>
+                }
+              />
+              <Route
+                path="rewards"
+                element={<RewardSteps content={rewardsData} />}
+              />
+              <Route path="/store-locator" element={<AppLayout />}>
+                <Route index element={<Navigate replace to="cities" />} />
+                <Route path="cities" element={<CityList />} />
+              </Route>
+              <Route
+                path="login"
+                element={<AuthForm defaultIsLogin={true} />}
+              />
+              <Route
+                path="register"
+                element={<AuthForm defaultIsLogin={false} />}
+              />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+            <Footer />
+          </Container>
+        </BrowserRouter>
+      </CitiesProvider>
+    </ThemeProvider>
   );
 }

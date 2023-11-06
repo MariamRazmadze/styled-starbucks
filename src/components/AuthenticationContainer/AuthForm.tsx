@@ -1,5 +1,5 @@
 import { useState, useRef, useContext, useEffect } from "react";
-import AuthContext from "../../store/auth-context";
+import AuthContext from "../../contexts/auth-context";
 import { useNavigate, Link } from "react-router-dom";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
