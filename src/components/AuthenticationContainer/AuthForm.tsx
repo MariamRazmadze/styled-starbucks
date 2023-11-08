@@ -3,7 +3,7 @@ import AuthContext from "../../contexts/auth-context";
 import { useNavigate, Link } from "react-router-dom";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 import {
   StyledAuth,
   AuthHeader,

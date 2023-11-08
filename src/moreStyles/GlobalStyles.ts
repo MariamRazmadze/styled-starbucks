@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const GlobalStyles = createGlobalStyle`
 * {
@@ -30,12 +31,13 @@ a {
 
 ul {
   list-style: none;
-  margin-bottom:0;
+  margin-bottom: 0;
 }
 
-ul *{
-  text-decoration:none
-};
+ul * {
+  text-decoration: none;
+}
+
 
 p {
   margin: 5px 0;
