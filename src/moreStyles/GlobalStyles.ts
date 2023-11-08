@@ -33,6 +33,10 @@ ul {
   margin-bottom:0;
 }
 
+ul *{
+  text-decoration:none
+};
+
 p {
   margin: 5px 0;
   line-height: 1.7;

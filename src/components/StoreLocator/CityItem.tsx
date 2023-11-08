@@ -2,6 +2,7 @@ import { CityData } from "./CityList";
 import { PiHeartLight } from "react-icons/pi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { useCities } from "../../contexts/useCities";
+import { Link } from "react-router-dom";
 import {
   CityIcon,
   CityItemContainer,
@@ -40,34 +41,36 @@ export default function CityItem({ city }: { city: CityData }) {
 
   return (
     <li onClick={handleClick}>
-      <CityItemContainer
-        isActive={Boolean(currentCity && id === currentCity.id)}
-      >
-        <div>
-          <CityName>{cityName}</CityName>
-          <CityParagraph>{address}</CityParagraph>
-          {!storeStatus && (
-            <>
-              <CityParagraph>Closed</CityParagraph>
-              <StoreClosed>
-                <DeleteButton>&times;</DeleteButton>
-                <CitySpan>Store closed</CitySpan>
-              </StoreClosed>
-            </>
-          )}
-        </div>
-        <div>
-          <CityIcons>
-            <CityIcon>
-              <PiHeartLight />
-            </CityIcon>
-            <CityIcon>
-              <AiOutlineExclamationCircle />
-            </CityIcon>
-          </CityIcons>
-          <CityButton>Order here</CityButton>
-        </div>
-      </CityItemContainer>
+      <Link to={`?lat=${city.position.lat}&lng=${city.position.lng}`}>
+        <CityItemContainer
+          isActive={Boolean(currentCity && id === currentCity.id)}
+        >
+          <div>
+            <CityName>{cityName}</CityName>
+            <CityParagraph>{address}</CityParagraph>
+            {!storeStatus && (
+              <>
+                <CityParagraph>Closed</CityParagraph>
+                <StoreClosed>
+                  <DeleteButton>&times;</DeleteButton>
+                  <CitySpan>Store closed</CitySpan>
+                </StoreClosed>
+              </>
+            )}
+          </div>
+          <div>
+            <CityIcons>
+              <CityIcon>
+                <PiHeartLight />
+              </CityIcon>
+              <CityIcon>
+                <AiOutlineExclamationCircle />
+              </CityIcon>
+            </CityIcons>
+            <CityButton>Order here</CityButton>
+          </div>
+        </CityItemContainer>
+      </Link>
     </li>
   );
 }

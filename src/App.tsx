@@ -1,5 +1,6 @@
 import GlobalStyles from "./moreStyles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
+import { CitiesProvider } from "./contexts/CitiesContext";
 import Navbar from "./components/Header/Navbar";
 import RewardSteps from "./components/Rewards/RewardSteps";
 import { rewardsData } from "../data/rewardsData";
@@ -24,7 +25,6 @@ import { QuestionContainer, Container } from "./moreStyles/appStyles";
 import { Navigate } from "react-router-dom";
 import AppLayout from "./components/StoreLocator/AppLayout";
 import CityList from "./components/StoreLocator/CityList";
-import { CitiesProvider } from "./contexts/CitiesContext";
 
 const defaultTheme = {
   primaryColor: "#006241;",

@@ -1,4 +1,4 @@
-import Spinner from "./Spinner";
+import Loader from "../Loader";
 import Message from "./Message";
 import { useCities } from "../../contexts/useCities";
 import CityItem from "./CityItem";
@@ -41,7 +41,7 @@ export interface CityListProps {
 
 const CityList = () => {
   const { cities, isLoading } = useCities();
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Loader />;
   if (!cities.length) return <Message message="no stores found nearby" />;
   return (
     <StyledCityList>
