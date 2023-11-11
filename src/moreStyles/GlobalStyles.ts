@@ -56,6 +56,48 @@ p {
 }
 
 
+
+.custom-nav{
+  border-bottom: 1px solid #dbd9d7;
+  background-color:#f9f9f9;
+  padding-left: 125px;
+  width:100%;
+  margin:0;
+  box-shadow: inset 0 7px 9px -7px rgba(0, 0, 0, 0.14);
+  margin-top:-4.8rem;
+}
+
+.nav-item{
+ font-size:1.3rem;
+ line-height:1.5rem;
+  padding:1.6rem;
+}
+
+.nav-underline .nav-link.active, 
+.nav-underline .nav-link{
+  color: rgba(0,0,0,.87);
+}
+
+.flex-column {
+  max-width:200px;
+}
+
+.flex-column a{
+  font-size:16px;
+  line-height:24px;;
+  padding:1rem;
+  color: rgba(0,0,0,.58);
+  text-decoration:none;
+}
+
+
+
+@media (max-width: 768px) {
+  .custom-nav{
+    padding-left:10px;
+  }
+  }
+
 `;
 
 export default GlobalStyles;

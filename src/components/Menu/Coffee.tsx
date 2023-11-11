@@ -3,6 +3,8 @@ interface StyledCoffeeProps {
   $unavailable: boolean;
 }
 
+import { CoffeeItem } from "./HotCoffees";
+
 const StyledCoffee = styled.li<StyledCoffeeProps>`
   display: flex;
   flex-direction: column;
@@ -47,13 +49,7 @@ const StyledCoffee = styled.li<StyledCoffeeProps>`
   }
 `;
 interface CoffeeProps {
-  coffeeObj: {
-    id: string;
-    type: string;
-    photoName: string;
-    name: string;
-    unavailable: boolean;
-  };
+  coffeeObj: CoffeeItem;
 }
 
 export function Coffee({ coffeeObj }: CoffeeProps) {
