@@ -1,6 +1,6 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import Loader from "../Loader";
-import ErrorText from "../ErrorText";
+import Loader from "../UI/Loader";
+import ErrorText from "../UI/ErrorText";
 import { useCoffee } from "../../contexts/useCoffee";
 import Menu from "./Menu";
 import FirstPage from "./FirstPage";

@@ -1,5 +1,5 @@
-import { Outlet } from "react-router-dom";
 import styled from "styled-components";
+import CityList from "./CityList";
 
 const StyledSidebar = styled.div`
   flex-basis: 56rem;
@@ -14,7 +14,7 @@ const StyledSidebar = styled.div`
 export default function Sidebar() {
   return (
     <StyledSidebar>
-      <Outlet />
+      <CityList />
     </StyledSidebar>
   );
 }

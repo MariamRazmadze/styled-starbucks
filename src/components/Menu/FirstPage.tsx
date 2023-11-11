@@ -93,9 +93,7 @@ const FirstPageWrapper = styled.div`
   }
 `;
 export default function FirstPage() {
-  console.log("frstomage");
   const { coffees } = useCoffee();
-  console.log("firstpage", coffees);
   return (
     <>
       <SubNav />

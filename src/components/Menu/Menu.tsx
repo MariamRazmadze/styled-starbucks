@@ -27,7 +27,6 @@ export default function Menu({
     ...coffees[coffeeIndex][categoryName],
     name: categoryName,
   };
-  console.log("category", category);
 
   return (
     <MenuBody>

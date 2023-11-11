@@ -1,4 +1,4 @@
-import Loader from "../Loader";
+import Loader from "../UI/Loader";
 import Message from "./Message";
 import { useCities } from "../../contexts/useCities";
 import CityItem from "./CityItem";

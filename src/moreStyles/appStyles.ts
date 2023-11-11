@@ -8,6 +8,8 @@ export const QuestionContainer = styled.div`
 export const Container = styled.div`
   margin: 0 auto;
   display: flex;
+  width: 100vw;
+  min-height: 100vh;
   flex-direction: column;
   align-items: center;
   gap: 4.8rem;

@@ -1,5 +1,5 @@
-import { QuizAction } from "../../App";
-import { Button } from "../Button";
+import { QuizAction } from "../../types/allInterfaces";
+import { Button } from "../UI/Button";
 import styled from "styled-components";
 
 const QuizButton = styled(Button)`

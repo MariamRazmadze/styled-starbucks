@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 
 export const StyledAuth = styled.section`
   margin: 0 auto;

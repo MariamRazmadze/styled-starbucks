@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Button } from "../Button";
+import { Button } from "../UI/Button";
 
 export const CityIcon = styled.span`
   font-size: 24px;
