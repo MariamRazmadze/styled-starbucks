@@ -58,7 +58,7 @@ export const CityParagraph = styled.p`
   font-size: 1.3rem;
 `;
 
-export const CityItemContainer = styled.div<{ isActive: boolean }>`
+export const CityItemContainer = styled.div<{ $isActive: boolean }>`
   display: flex;
   gap: 1.6rem;
   align-items: center;
@@ -68,6 +68,6 @@ export const CityItemContainer = styled.div<{ isActive: boolean }>`
   cursor: pointer;
   color: inherit;
   text-decoration: none;
-  background-color: ${(props) => (props.isActive ? "#e5f0ec" : "initial")};
-  border: ${(props) => (props.isActive ? "2px solid #006241" : "none")};
+  background-color: ${(props) => (props.$isActive ? "#e5f0ec" : "initial")};
+  border: ${(props) => (props.$isActive ? "2px solid #006241" : "none")};
 `;

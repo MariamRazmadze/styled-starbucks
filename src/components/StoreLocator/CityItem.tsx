@@ -43,7 +43,7 @@ export default function CityItem({ city }: { city: CityData }) {
     <li onClick={handleClick}>
       <Link to={`?lat=${city.position.lat}&lng=${city.position.lng}`}>
         <CityItemContainer
-          isActive={Boolean(currentCity && id === currentCity.id)}
+          $isActive={Boolean(currentCity && id === currentCity.id)}
         >
           <div>
             <CityName>{cityName}</CityName>

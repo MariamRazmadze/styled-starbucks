@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useCoffee } from "../../contexts/useCoffee";
 import SideMenu from "./SideMenu";
 import SubNav from "./SubNav";
+import { MenuProps } from "./SideMenu";
+import { v4 as uuidv4 } from "uuid";
 const StyledCoffee = styled.li`
   display: flex;
   align-items: center;
@@ -92,13 +93,12 @@ const FirstPageWrapper = styled.div`
     display: block;
   }
 `;
-export default function FirstPage() {
-  const { coffees } = useCoffee();
+export default function FirstPage({ coffees }: MenuProps) {
   return (
     <>
       <SubNav />
       <FirstPageWrapper>
-        <SideMenu />
+        <SideMenu coffees={coffees} />
         <MenuContainer>
           <MainTitle>Menu</MainTitle>
           <TitleContainer>
@@ -106,12 +106,12 @@ export default function FirstPage() {
           </TitleContainer>
           <Coffees>
             {coffees &&
-              coffees.map((coffee, index) => {
+              coffees.map((coffee) => {
                 const category = Object.keys(coffee)[0];
                 const image = coffee[category].photoName;
                 const link = `${category.replace(" ", "-")}`;
                 return (
-                  <MenuDiv key={index}>
+                  <MenuDiv key={uuidv4()}>
                     <Link to={link}>
                       <StyledCoffee>
                         <img src={image} alt={category} />

@@ -1,7 +1,7 @@
 import Nav from "react-bootstrap/Nav";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useCoffee } from "../../contexts/useCoffee";
+import { CoffeeData } from "./CategoryPage";
 
 const StyledSideMenu = styled.div`
   display: flex;
@@ -19,9 +19,11 @@ const SideMenuHeader = styled.h2`
   margin-left: 1rem;
 `;
 
-export default function SideMenu() {
-  const { coffees } = useCoffee();
-  console.log("coff", coffees);
+export interface MenuProps {
+  coffees: CoffeeData[];
+}
+
+export default function SideMenu({ coffees }: MenuProps) {
   return (
     <StyledSideMenu>
       <SideMenuHeader>Drinks</SideMenuHeader>

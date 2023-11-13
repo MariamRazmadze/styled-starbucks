@@ -16,24 +16,27 @@ const PageNotFound = lazy(() => import("./components/UI/PageNotFound"));
 import GlobalLayout from "./components/UI/GlobalLayout";
 import { rewardsData } from "../data/rewardsData";
 import Loader from "./components/UI/Loader";
-import { CoffeeProvider } from "./contexts/CoffeeContext";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { loader as menuLoader } from "./components/Menu/loader";
+import ErrorText from "./components/UI/ErrorText";
 
 const defaultTheme = {
   primaryColor: "#006241;",
   greenAccent: "#00754a",
   secondaryBackground: " #d4e9e2;",
+  redAccent: "#ef3341",
 };
 
 const routes = [
   {
     element: <GlobalLayout />,
+    errorElement: <ErrorText />,
     children: [
       {
         path: "/",
         element: <Homepage />,
       },
-      { path: "/menu/*", element: <MainMenu /> },
+      { path: "/menu/*", element: <MainMenu />, loader: menuLoader },
       { path: "store-locator", element: <AppLayout /> },
       { path: "login", element: <AuthForm defaultIsLogin={true} /> },
       { path: "register", element: <AuthForm defaultIsLogin={false} /> },
@@ -51,14 +54,12 @@ const router = createBrowserRouter(routes);
 export default function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <CoffeeProvider>
-        <CitiesProvider>
-          <GlobalStyles />
-          <Suspense fallback={<Loader />}>
-            <RouterProvider router={router} />
-          </Suspense>
-        </CitiesProvider>
-      </CoffeeProvider>
+      <CitiesProvider>
+        <GlobalStyles />
+        <Suspense fallback={<Loader />}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </CitiesProvider>
     </ThemeProvider>
   );
 }

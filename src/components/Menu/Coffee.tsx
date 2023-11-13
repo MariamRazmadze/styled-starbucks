@@ -2,9 +2,7 @@ import styled from "styled-components";
 interface StyledCoffeeProps {
   $unavailable: boolean;
 }
-
-import { CoffeeItem } from "./HotCoffees";
-
+import { CoffeeItem } from "./CategoryPage";
 const StyledCoffee = styled.li<StyledCoffeeProps>`
   display: flex;
   flex-direction: column;

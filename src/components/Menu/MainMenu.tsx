@@ -1,14 +1,11 @@
-import { Route, Routes, useLocation } from "react-router-dom";
-import Loader from "../UI/Loader";
-import ErrorText from "../UI/ErrorText";
-import { useCoffee } from "../../contexts/useCoffee";
+import { Route, Routes, useLoaderData } from "react-router-dom";
 import Menu from "./Menu";
 import FirstPage from "./FirstPage";
+import { CoffeeData } from "./CategoryPage";
+import { v4 as uuidv4 } from "uuid";
 
 export default function MainMenu() {
-  const { coffeeStatus, coffees } = useCoffee();
-  const location = useLocation();
-
+  const coffees = useLoaderData() as CoffeeData[];
   const routes =
     coffees &&
     coffees.map((coffee, index) => {
@@ -18,20 +15,21 @@ export default function MainMenu() {
       return (
         <Route
           path={path}
-          element={<Menu coffeeIndex={index} categoryName={categoryName} />}
-          key={path}
+          element={
+            <Menu
+              coffeeIndex={index}
+              categoryName={categoryName}
+              coffees={coffees}
+            />
+          }
+          key={uuidv4()}
         />
       );
     });
-
   return (
-    <>
-      {coffeeStatus === "loading" && <Loader />}
-      {coffeeStatus === "error" && <ErrorText />}
-      {coffeeStatus === "ready" && location.pathname === "/menu" && (
-        <FirstPage />
-      )}
-      <Routes>{routes}</Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<FirstPage coffees={coffees} />} />
+      {routes}
+    </Routes>
   );
 }

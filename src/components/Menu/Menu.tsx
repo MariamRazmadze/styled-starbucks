@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { useCoffee } from "../../contexts/useCoffee";
 import CategoryPage from "./CategoryPage";
 import SideMenu from "./SideMenu";
+import { CoffeeData } from "./CategoryPage";
 
 const MenuBody = styled.div`
   display: flex;
@@ -18,11 +18,12 @@ const MenuBody = styled.div`
 export default function Menu({
   coffeeIndex,
   categoryName,
+  coffees,
 }: {
   coffeeIndex: number;
   categoryName: string;
+  coffees: CoffeeData[];
 }) {
-  const { coffees } = useCoffee();
   const category = {
     ...coffees[coffeeIndex][categoryName],
     name: categoryName,
@@ -30,7 +31,7 @@ export default function Menu({
 
   return (
     <MenuBody>
-      <SideMenu />
+      <SideMenu coffees={coffees} />
       <CategoryPage category={category} />;
     </MenuBody>
   );
