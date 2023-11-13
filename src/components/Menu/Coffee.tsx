@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 interface StyledCoffeeProps {
   $unavailable: boolean;
 }
@@ -52,11 +53,12 @@ interface CoffeeProps {
 
 export function Coffee({ coffeeObj }: CoffeeProps) {
   return (
-    <StyledCoffee $unavailable={coffeeObj.unavailable}>
-      <img src={coffeeObj.photoName} alt={coffeeObj.name} />
-      <h3>{coffeeObj.name}</h3>
-
-      <span>{coffeeObj.unavailable && "Unavailable"}</span>
-    </StyledCoffee>
+    <Link to={`/menu/product/${coffeeObj.id}`}>
+      <StyledCoffee $unavailable={coffeeObj.unavailable}>
+        <img src={coffeeObj.photoName} alt={coffeeObj.name} />
+        <h3>{coffeeObj.name}</h3>
+        <span>{coffeeObj.unavailable && "Unavailable"}</span>
+      </StyledCoffee>
+    </Link>
   );
 }

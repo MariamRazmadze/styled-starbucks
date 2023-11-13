@@ -1,6 +1,7 @@
 import { Route, Routes, useLoaderData } from "react-router-dom";
 import Menu from "./Menu";
 import FirstPage from "./FirstPage";
+import CoffeePage from "./CoffeePage";
 import { CoffeeData } from "./CategoryPage";
 import { v4 as uuidv4 } from "uuid";
 
@@ -26,9 +27,11 @@ export default function MainMenu() {
         />
       );
     });
+
   return (
     <Routes>
       <Route path="/" element={<FirstPage coffees={coffees} />} />
+      <Route path="/product/:id" element={<CoffeePage coffees={coffees} />} />
       {routes}
     </Routes>
   );
