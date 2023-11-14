@@ -1,5 +1,5 @@
 {
-  "name": "styled-starbucks",
+  "name": "starbucks",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,43 +7,31 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "server": "json-server --watch data/db.json --port 5000"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@types/history": "^5.0.0",
-    "@types/react-bootstrap": "^0.32.34",
-    "@types/react-router-dom": "^5.3.3",
     "bootstrap": "^5.3.2",
-    "json-server": "^0.17.4",
-    "leaflet": "^1.9.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
     "react-dom": "^18.2.0",
-    "react-helmet": "^6.1.0",
-    "react-icons": "^4.11.0",
+    "react-icons": "^4.12.0",
     "react-leaflet": "^4.2.1",
-    "react-router-dom": "^6.17.0",
-    "styled-components": "^6.1.0",
+    "react-router-dom": "^6.18.0",
+    "styled-components": "^6.1.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@types/bootstrap": "^5.2.8",
-    "@types/leaflet": "^1.9.7",
     "@types/react": "^18.2.15",
+    "@types/react-bootstrap": "^0.32.35",
     "@types/react-dom": "^18.2.7",
-    "@types/react-helmet": "^6.1.8",
-    "@types/styled-components": "^5.1.29",
-    "@types/uuid": "^9.0.6",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",
-    "eslint": "^8.52.0",
-    "eslint-config-react-app": "^7.0.1",
+    "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5",
-    "vite-plugin-eslint": "^1.8.1"
+    "vite": "^4.4.5"
   }
 }
