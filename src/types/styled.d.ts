@@ -6,5 +6,8 @@ declare module "styled-components" {
     greenAccent: string;
     secondaryBackground: string;
     redAccent: string;
+    detailsColor: string;
+    whiteSoft: string;
+    colorGold: string;
   }
 }

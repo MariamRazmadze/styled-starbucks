@@ -25,6 +25,9 @@ const defaultTheme = {
   greenAccent: "#00754a",
   secondaryBackground: " #d4e9e2;",
   redAccent: "#ef3341",
+  detailsColor: "#1f3933;",
+  whiteSoft: "#a8b2a7",
+  colorGold: "#cba258",
 };
 
 const routes = [

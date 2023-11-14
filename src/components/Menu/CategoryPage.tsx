@@ -61,6 +61,12 @@ export interface CoffeeItem {
   photoName: string;
   type: string;
   unavailable: boolean;
+  calories: string;
+  fat: string;
+  sugar: string;
+  description: string;
+  detailedPhotoName: string;
+  stars: string;
 }
 
 export type CoffeeCategory = {
