@@ -7,17 +7,43 @@ import {
   NavbarRight,
   NavListItem,
   NavbarBrand,
+  NavIcon,
 } from "./StyledNav";
 import { LightButton, DarkButton } from "../UI/Button";
 import { HamburgerButton, MobileMenu } from "./HamburgerMenu";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/navbar/logo.svg";
+import { useSelector } from "react-redux";
+import { FaUserNinja } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
+import { LogoutButton } from "./StyledNav";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../Auth/authSlice";
+
+export interface Store {
+  user: {
+    token: string | null;
+    isLoggedIn: boolean;
+    tokenExpirationTime: string | null;
+    isRegistered: boolean;
+    username: string | null;
+  };
+}
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const isLoggedIn = useSelector((state: Store) => state.user.isLoggedIn);
+  console.log(isLoggedIn);
 
   const toggleMenu = () => {
     setIsOpen((is) => !is);
+  };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(logout());
+    navigate("/");
   };
   return (
     <>
@@ -62,16 +88,37 @@ export default function Navbar() {
                 <span>Find a store</span>
               </Link>
             </NavListItem>
-            <NavListItem>
-              <Link to="/login">
-                <LightButton>Log in </LightButton>
-              </Link>
-            </NavListItem>
-            <NavListItem>
-              <Link to="/register">
-                <DarkButton>Join Now </DarkButton>
-              </Link>
-            </NavListItem>
+            {!isLoggedIn ? (
+              <>
+                <NavListItem>
+                  <Link to="/login">
+                    <LightButton>Log in </LightButton>
+                  </Link>
+                </NavListItem>
+                <NavListItem>
+                  <Link to="/register">
+                    <DarkButton>Join Now </DarkButton>
+                  </Link>
+                </NavListItem>
+              </>
+            ) : (
+              <>
+                <NavListItem>
+                  <Link to="/user">
+                    <NavIcon>
+                      <FaUserNinja />
+                    </NavIcon>
+                  </Link>
+                </NavListItem>
+                <NavListItem>
+                  <LogoutButton type="button" onClick={logoutHandler}>
+                    <NavIcon>
+                      <IoMdLogOut />
+                    </NavIcon>
+                  </LogoutButton>
+                </NavListItem>
+              </>
+            )}
           </NavbarRight>
           {/* burger menu */}
           <HamburgerButton type="button" onClick={toggleMenu} $isOpen={isOpen}>
@@ -99,13 +146,33 @@ export default function Navbar() {
                 </li>
               </ul>
               <div>
-                <Link to="/login">
-                  <LightButton>Log in </LightButton>
-                </Link>
-
-                <Link to="/register">
-                  <DarkButton>Join Now </DarkButton>
-                </Link>
+                {!isLoggedIn ? (
+                  <>
+                    <Link to="/login">
+                      <LightButton>Log in </LightButton>
+                    </Link>
+                    <Link to="/register">
+                      <DarkButton>Join Now </DarkButton>
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <NavListItem>
+                      <Link to="/user">
+                        <NavIcon>
+                          <FaUserNinja />
+                        </NavIcon>
+                      </Link>
+                    </NavListItem>
+                    <NavListItem>
+                      <LogoutButton type="button" onClick={logoutHandler}>
+                        <NavIcon>
+                          <IoMdLogOut />
+                        </NavIcon>
+                      </LogoutButton>
+                    </NavListItem>
+                  </>
+                )}
 
                 <div>
                   <Link to="/store-locator">

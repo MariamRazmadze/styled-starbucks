@@ -23,7 +23,7 @@ const ErrorMessage = styled.p`
   color: ${({ theme }) => theme.redAccent};
 `;
 
-const GoBackButton = styled.button`
+export const GoBackButton = styled.button`
   display: flex;
   align-items: center;
   margin-top: 2rem;
@@ -41,7 +41,7 @@ const GoBackButton = styled.button`
   }
 `;
 
-const GoBackIcon = styled(IoIosArrowBack)`
+export const GoBackIcon = styled(IoIosArrowBack)`
   margin-right: 0.5rem;
 `;
 

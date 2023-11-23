@@ -1,8 +1,10 @@
-import { useState, useRef, useContext, useEffect } from "react";
-import AuthContext from "../../contexts/auth-context";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
+import { useDispatch } from "react-redux";
+import { login, register } from "./authSlice";
+import { AppDispatch } from "../../store";
 
 import {
   StyledAuth,
@@ -19,14 +21,13 @@ import {
 type AuthFormProps = {
   defaultIsLogin: boolean;
 };
-
-const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
+const Auth = ({ defaultIsLogin }: AuthFormProps) => {
   const navigate = useNavigate();
   const usernameInputRef = useRef<HTMLInputElement | null>(null);
   const passwordInputRef = useRef<HTMLInputElement | null>(null);
-  const authCtx = useContext(AuthContext);
+  const dispatch: AppDispatch = useDispatch();
+  const [isLoading] = useState(false);
   const [isLogin, setIsLogin] = useState(defaultIsLogin);
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -38,58 +39,42 @@ const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
     setIsLogin(defaultIsLogin);
   }, [defaultIsLogin]);
 
-  const submitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const enteredUsername = usernameInputRef.current?.value;
     const enteredPassword = passwordInputRef.current?.value;
-
-    setIsLoading(true);
-    let url;
-    if (isLogin) {
-      url = "https://starbucks.pythonanywhere.com/login";
-    } else {
-      url = "https://starbucks.pythonanywhere.com/register";
+    if (!enteredUsername || !enteredPassword) {
+      console.error("Username or password is missing");
+      return;
     }
-
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          username: enteredUsername,
-          password: enteredPassword,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      setIsLoading(false);
-      if (res.ok) {
-        const data = await res.json();
-        console.log(data);
-        const oneHourFromNow = new Date().getTime() + 60 * 60 * 1000;
-        const expirationTime = new Date(oneHourFromNow);
-
-        authCtx.login(data.access_token, expirationTime.toISOString());
-        navigate("/");
-      } else {
-        const data = await res.json();
-        let errorMessage = "Authentication failed!";
-        if (data && data.error && data.error.message) {
-          errorMessage = data.error.message;
+    if (isLogin) {
+      dispatch(
+        login({ username: enteredUsername, password: enteredPassword })
+      ).then((res) => {
+        if (login.fulfilled.match(res)) {
+          localStorage.setItem("username", enteredUsername);
+          navigate("/");
+        } else if (login.rejected.match(res)) {
+          setError(true);
+          setErrorMessage(res.error.message || "An error occurred");
         }
+      });
+    } else {
+      dispatch(
+        register({ username: enteredUsername, password: enteredPassword })
+      ).then((res) => {
+        if (register.fulfilled.match(res)) {
+          localStorage.setItem("username", enteredUsername);
 
-        throw new Error(errorMessage);
-      }
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(true);
-        setErrorMessage(err.message);
-      }
+          navigate("/");
+        } else if (register.rejected.match(res)) {
+          setError(true);
+          setErrorMessage(res.error.message || "An error occurred");
+        }
+      });
     }
   };
-
   return (
     <>
       <AuthHeader>Sign in or create an account</AuthHeader>
@@ -163,4 +148,4 @@ const AuthForm = ({ defaultIsLogin }: AuthFormProps) => {
   );
 };
 
-export default AuthForm;
+export default Auth;

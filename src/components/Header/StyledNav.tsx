@@ -88,3 +88,13 @@ export const NavListItem = styled.li`
     border-bottom-color: ${({ theme }) => theme.primaryColor};
   }
 `;
+
+export const LogoutButton = styled.button`
+  background: transparent;
+  border: none;
+  outline: none;
+`;
+
+export const NavIcon = styled.span`
+  font-size: 22px;
+`;

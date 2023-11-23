@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useState } from "react";
 
 const SizeSelectorContainer = styled.div`
   display: flex;
@@ -67,8 +66,7 @@ const RadioButton = styled.input.attrs({ type: "radio" })`
   }
 `;
 
-export default function SizeSelector() {
-  const [selectedSize, setSelectedSize] = useState("Grande");
+export default function SizeSelector({ selectedSize, setSelectedSize }) {
   const sizes = [
     {
       id: "Short",

@@ -15,7 +15,7 @@ html {
 
 body {
   font-family: "Open Sans", sans-serif;
-  color: black;
+  color: #000000de;
   font-weight: 400;
   line-height: 1.4;
   min-height: 100vh;

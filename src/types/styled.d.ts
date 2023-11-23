@@ -9,5 +9,6 @@ declare module "styled-components" {
     detailsColor: string;
     whiteSoft: string;
     colorGold: string;
+    houseGreen: string;
   }
 }

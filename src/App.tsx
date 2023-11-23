@@ -7,9 +7,7 @@ import { lazy, Suspense } from "react";
 const Homepage = lazy(() => import("./components/HomePage/Homepage"));
 const MainMenu = lazy(() => import("./components/Menu/MainMenu"));
 const MainQuiz = lazy(() => import("./components/CoffeeQuiz/MainQuiz"));
-const AuthForm = lazy(
-  () => import("./components/AuthenticationContainer/AuthForm")
-);
+const Auth = lazy(() => import("./components/Auth/Auth"));
 const RewardSteps = lazy(() => import("./components/Rewards/RewardSteps"));
 const AppLayout = lazy(() => import("./components/StoreLocator/AppLayout"));
 const PageNotFound = lazy(() => import("./components/UI/PageNotFound"));
@@ -19,6 +17,11 @@ import Loader from "./components/UI/Loader";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { loader as menuLoader } from "./components/Menu/loader";
 import ErrorText from "./components/UI/ErrorText";
+import CreateOrder, {
+  action as createOrderAction,
+} from "./components/Order/CreateOrder";
+import Order, { loader as orderLoader } from "./components/Order/Order";
+import Cart from "./components/Cart/Cart";
 
 const defaultTheme = {
   primaryColor: "#006241;",
@@ -28,6 +31,7 @@ const defaultTheme = {
   detailsColor: "#1f3933;",
   whiteSoft: "#a8b2a7",
   colorGold: "#cba258",
+  houseGreen: "#1e3932;",
 };
 
 const routes = [
@@ -40,9 +44,15 @@ const routes = [
         element: <Homepage />,
       },
       { path: "/menu/*", element: <MainMenu />, loader: menuLoader },
+      {
+        path: "/order/new",
+        element: <CreateOrder />,
+        action: createOrderAction,
+      },
+      { path: "/order/:orderId", element: <Order />, loader: orderLoader },
       { path: "store-locator", element: <AppLayout /> },
-      { path: "login", element: <AuthForm defaultIsLogin={true} /> },
-      { path: "register", element: <AuthForm defaultIsLogin={false} /> },
+      { path: "login", element: <Auth defaultIsLogin={true} /> },
+      { path: "register", element: <Auth defaultIsLogin={false} /> },
       { path: "rewards", element: <RewardSteps content={rewardsData} /> },
       { path: "quiz", element: <MainQuiz /> },
       {
@@ -52,6 +62,7 @@ const routes = [
       { path: "*", element: <PageNotFound /> },
     ],
   },
+  { path: "/cart", element: <Cart /> },
 ];
 const router = createBrowserRouter(routes);
 export default function App() {

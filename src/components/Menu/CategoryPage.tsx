@@ -67,6 +67,13 @@ export interface CoffeeItem {
   description: string;
   detailedPhotoName: string;
   stars: string;
+  prices: {
+    [size: string]: number;
+    short: number;
+    tall: number;
+    grande: number;
+    venti: number;
+  };
 }
 
 export type CoffeeCategory = {
