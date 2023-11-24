@@ -5,6 +5,9 @@ import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
 import { login, register } from "./authSlice";
 import { AppDispatch } from "../../store";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { setRedirectUrl } from "./authSlice";
 
 import {
   StyledAuth,
@@ -39,6 +42,7 @@ const Auth = ({ defaultIsLogin }: AuthFormProps) => {
     setIsLogin(defaultIsLogin);
   }, [defaultIsLogin]);
 
+  const { redirectUrl } = useSelector((state: RootState) => state.user);
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -54,7 +58,12 @@ const Auth = ({ defaultIsLogin }: AuthFormProps) => {
       ).then((res) => {
         if (login.fulfilled.match(res)) {
           localStorage.setItem("username", enteredUsername);
-          navigate("/");
+          if (redirectUrl) {
+            navigate(redirectUrl);
+            dispatch(setRedirectUrl(null)); // Clear redirectUrl
+          } else {
+            navigate("/");
+          }
         } else if (login.rejected.match(res)) {
           setError(true);
           setErrorMessage(res.error.message || "An error occurred");
@@ -66,8 +75,12 @@ const Auth = ({ defaultIsLogin }: AuthFormProps) => {
       ).then((res) => {
         if (register.fulfilled.match(res)) {
           localStorage.setItem("username", enteredUsername);
-
-          navigate("/");
+          if (redirectUrl) {
+            navigate(redirectUrl);
+            dispatch(setRedirectUrl(null)); // Clear redirectUrl
+          } else {
+            navigate("/");
+          }
         } else if (register.rejected.match(res)) {
           setError(true);
           setErrorMessage(res.error.message || "An error occurred");

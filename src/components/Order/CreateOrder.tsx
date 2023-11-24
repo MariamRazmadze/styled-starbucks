@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getCart } from "../Cart/cartSlice";
 import EmptyCart from "../Cart/EmptyCart";
 import { getTotalCartPrice } from "../Cart/cartSlice";
+import { StyledOrder, OrderInput, InputsContainer } from "./StyledOrder";
 
 function CreateOrder() {
   const navigation = useNavigation();
@@ -16,42 +17,46 @@ function CreateOrder() {
 
   if (!items.length) return <EmptyCart />;
   return (
-    <div>
-      <h2>Confirm your current details to ensure a smooth delivery process</h2>
+    <StyledOrder>
+      <InputsContainer>
+        <h2>
+          Confirm your current details to ensure a smooth delivery process
+        </h2>
 
-      <Form method="POST">
-        <div>
-          <label>First Name</label>
-          <input type="text" name="full_name" required />
-        </div>
+        <Form method="POST">
+          <div>
+            <label>First Name</label>
+            <OrderInput type="text" name="full_name" required />
+          </div>
 
-        <div>
-          <label>Phone number</label>
           <div>
-            <input type="tel" name="phone_number" required />
+            <label>Phone number</label>
+            <div>
+              <OrderInput type="tel" name="phone_number" required />
+            </div>
           </div>
-        </div>
-        <div>
-          <label>Id Number</label>
           <div>
-            <input type="text" name="id_number" required />
+            <label>Id Number</label>
+            <div>
+              <OrderInput type="text" name="id_number" required />
+            </div>
           </div>
-        </div>
-        <div>
-          <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <label>Address</label>
+            <div>
+              <OrderInput type="text" name="address" required />
+            </div>
           </div>
-        </div>
-        <div>
-          <input type="hidden" name="items" value={JSON.stringify(items)} />
-          <input type="hidden" name="total_price" value={totalPrice} />
-          <button disabled={isSubmitting}>
-            {isSubmitting ? "placing order..." : "Order now"}
-          </button>
-        </div>
-      </Form>
-    </div>
+          <div>
+            <input type="hidden" name="items" value={JSON.stringify(items)} />
+            <input type="hidden" name="total_price" value={totalPrice} />
+            <button disabled={isSubmitting}>
+              {isSubmitting ? "placing order..." : "Order now"}
+            </button>
+          </div>
+        </Form>
+      </InputsContainer>
+    </StyledOrder>
   );
 }
 

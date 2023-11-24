@@ -25,7 +25,7 @@ export const CartSummary = styled.div`
   flex-direction: column;
   gap: 30%;
   height: 100vh;
-  width: 50vw;
+  width: 40vw;
   a {
     text-decoration: none;
   }
@@ -56,7 +56,7 @@ export const CartMainHeader = styled.h2`
 
 export const CartItemsContainer = styled.div`
   height: 100%;
-  width: 100%;
+  width: 60vw;
   display: flex;
   justify-content: center;
   background-color: #f9f9f9;

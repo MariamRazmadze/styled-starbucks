@@ -9,6 +9,7 @@ interface AuthState {
   username: string | null;
   isLoading: boolean;
   error: string | undefined | null;
+  redirectUrl: string | null;
 }
 
 const initialState: AuthState = {
@@ -19,6 +20,7 @@ const initialState: AuthState = {
   username: null,
   isLoading: false,
   error: null,
+  redirectUrl: null,
 };
 
 export const login = createAsyncThunk(
@@ -61,6 +63,10 @@ const authSlice = createSlice({
       state.isRegistered = false;
       state.isLoading = false;
       state.error = null;
+      state.redirectUrl = null;
+    },
+    setRedirectUrl(state, action) {
+      state.redirectUrl = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -97,5 +103,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setRedirectUrl } = authSlice.actions;
 export default authSlice.reducer;
