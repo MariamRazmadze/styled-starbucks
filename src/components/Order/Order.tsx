@@ -1,5 +1,5 @@
 import { useFetcher, useLoaderData } from "react-router-dom";
-
+import { LoaderFunctionArgs } from "react-router";
 import OrderItem from "./OrderItem";
 
 import { getOrder } from "../../services/coffeeApi";
@@ -8,7 +8,21 @@ import {
   formatCurrency,
   formatDate,
 } from "../../utils/helpers";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  StyledOrder,
+  OrderContainer,
+  OrderWrapper,
+  OrderHeader,
+  EstimatedP,
+  OrderStatus,
+  OrderCart,
+  OrderCartHeader,
+  OrderBackToMenu,
+} from "./StyledOrder";
+import { Link } from "react-router-dom";
+import { IoIosArrowBack } from "react-icons/io";
+import Logo from "../../assets/navbar/logo.svg";
 
 export interface OrderItemType {
   id: number;
@@ -44,44 +58,62 @@ function Order() {
 
   const { id, total_price, items } = order;
 
-  const estimatedDelivery = new Date(Date.now() + 30 * 60000).toISOString();
+  const [estimatedDelivery] = useState(
+    new Date(Date.now() + 30 * 60000).toISOString()
+  );
 
-  const deliveryIn = calcMinutesLeft(estimatedDelivery);
-  const status = deliveryIn > 0 ? "Delivering" : "Delivered";
+  const [minutesLeft, setMinutesLeft] = useState(
+    calcMinutesLeft(estimatedDelivery)
+  );
+  const status = minutesLeft > 0 ? "Delivering" : "Delivered";
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setMinutesLeft((prevMinutesLeft) => prevMinutesLeft - 1);
+    }, 60000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div>
-      <div>
-        <h2>Order #{id} status</h2>
+    <StyledOrder>
+      <OrderCartHeader>
+        <Link to="/">
+          <img src={Logo} alt="logo" />
+        </Link>
+        <Link to="/menu">
+          <OrderBackToMenu>
+            <IoIosArrowBack /> Back to menu
+          </OrderBackToMenu>
+        </Link>
+      </OrderCartHeader>
+      <OrderWrapper>
+        <OrderHeader>
+          <h2>Order #{id} </h2>
 
-        <div>
-          <span>{status} order</span>
-        </div>
-      </div>
+          <OrderStatus>Status: {status} order</OrderStatus>
+        </OrderHeader>
 
-      <div>
-        <p>
-          {deliveryIn >= 0
-            ? `Your order will arrive in ${calcMinutesLeft(
-                estimatedDelivery
-              )} minutes`
-            : "Order should have arrived"}
-        </p>
-        <p className="text-xs text-stone-500">
-          (Estimated delivery: {formatDate(estimatedDelivery)})
-        </p>
-      </div>
+        <OrderContainer>
+          <p>
+            {minutesLeft >= 0
+              ? `Your order will arrive in ${minutesLeft} minutes`
+              : "Order should have arrived"}
+          </p>
+          <EstimatedP>
+            (Estimated delivery: {formatDate(estimatedDelivery)})
+          </EstimatedP>
+        </OrderContainer>
 
-      <ul>
-        {items.map((item) => (
-          <OrderItem item={item} key={item.coffee_id} />
-        ))}
-      </ul>
+        <OrderCart>
+          {items.map((item) => (
+            <OrderItem item={item} key={item.coffee_id} />
+          ))}
+        </OrderCart>
 
-      <div>
-        <p>To pay on Delivery: {formatCurrency(total_price)}</p>
-      </div>
-    </div>
+        <OrderContainer>
+          <p>To pay on Delivery: {formatCurrency(total_price)}</p>
+        </OrderContainer>
+      </OrderWrapper>
+    </StyledOrder>
   );
 }
 
@@ -89,9 +121,8 @@ interface Params {
   orderId: string;
 }
 
-export async function loader({ params }: { params: Params }) {
+export async function loader({ params }: LoaderFunctionArgs<Params>) {
   const order = await getOrder(params.orderId);
   return order;
 }
-
 export default Order;

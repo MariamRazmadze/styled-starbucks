@@ -60,6 +60,9 @@ export const CartItemsContainer = styled.div`
   display: flex;
   justify-content: center;
   background-color: #f9f9f9;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const ContinueButton = styled(OrderButton)`

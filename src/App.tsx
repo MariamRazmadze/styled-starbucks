@@ -44,12 +44,7 @@ const routes = [
         element: <Homepage />,
       },
       { path: "/menu/*", element: <MainMenu />, loader: menuLoader },
-      {
-        path: "/order/new",
-        element: <CreateOrder />,
-        action: createOrderAction,
-      },
-      { path: "/order/:orderId", element: <Order />, loader: orderLoader },
+
       { path: "store-locator", element: <AppLayout /> },
       { path: "login", element: <Auth defaultIsLogin={true} /> },
       { path: "register", element: <Auth defaultIsLogin={false} /> },
@@ -63,6 +58,12 @@ const routes = [
     ],
   },
   { path: "/cart", element: <Cart /> },
+  {
+    path: "/order/new",
+    element: <CreateOrder />,
+    action: createOrderAction,
+  },
+  { path: "/order/:orderId", element: <Order />, loader: orderLoader },
 ];
 const router = createBrowserRouter(routes);
 export default function App() {

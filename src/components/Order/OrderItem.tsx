@@ -1,18 +1,20 @@
 import { formatCurrency } from "../../utils/helpers";
 import { OrderItemType } from "./Order";
+import Card from "../UI/Card";
+import { CardP, CardTotal } from "./StyledOrder";
 
 function OrderItem({ item }: { item: OrderItemType }) {
   const { quantity, name, total_price } = item;
 
   return (
-    <li>
+    <Card>
       <div>
-        <p>
+        <CardP>
           <span>{quantity}&times;</span> {name}
-        </p>
-        <p>{formatCurrency(total_price)}</p>
+        </CardP>
+        <CardTotal>{formatCurrency(total_price)}</CardTotal>
       </div>
-    </li>
+    </Card>
   );
 }
 
