@@ -25,7 +25,19 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
-      state.cart.push(action.payload);
+      const itemIndex = state.cart.findIndex(
+        (item) =>
+          item.coffeeId === action.payload.coffeeId &&
+          item.size === action.payload.size
+      );
+
+      if (itemIndex >= 0) {
+        state.cart[itemIndex].quantity++;
+        state.cart[itemIndex].totalPrice =
+          state.cart[itemIndex].quantity * state.cart[itemIndex].unitPrice;
+      } else {
+        state.cart.push(action.payload);
+      }
     },
 
     deleteItem(state, action) {

@@ -56,10 +56,13 @@ export const CartMainHeader = styled.h2`
 
 export const CartItemsContainer = styled.div`
   height: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
   width: 60vw;
   display: flex;
   justify-content: center;
   background-color: #f9f9f9;
+  margin: 0;
   @media (max-width: 768px) {
     width: 100%;
   }

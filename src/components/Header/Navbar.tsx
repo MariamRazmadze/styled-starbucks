@@ -34,7 +34,6 @@ export interface Store {
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const isLoggedIn = useSelector((state: Store) => state.user.isLoggedIn);
-  console.log(isLoggedIn);
 
   const toggleMenu = () => {
     setIsOpen((is) => !is);

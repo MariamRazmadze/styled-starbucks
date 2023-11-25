@@ -33,7 +33,6 @@ const BreadCrumbWrapper = styled.div`
 
 function CoffeeBreadcrumbs({ coffee, categoryData }) {
   const categoryLink = categoryData.link;
-  console.log(categoryLink);
   const categoryName = categoryData.name;
   return (
     <BreadCrumbWrapper>

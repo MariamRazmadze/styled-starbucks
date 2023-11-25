@@ -3,7 +3,7 @@ import { createOrder } from "../../services/coffeeApi";
 import { redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getCart } from "../Cart/cartSlice";
-import EmptyCart from "../Cart/EmptyCart";
+import EmptyOrder from "./EmptyOrder";
 import { getTotalCartPrice } from "../Cart/cartSlice";
 import { GoBackIcon } from "../UI/ErrorText";
 import { useNavigate } from "react-router-dom";
@@ -24,10 +24,9 @@ function CreateOrder() {
   const isSubmitting = navigation.state === "submitting";
 
   const items = useSelector(getCart);
-  console.log("itemsin cart", items.length);
   const totalPrice = useSelector(getTotalCartPrice);
 
-  if (!items.length) return <EmptyCart />;
+  if (!items.length) return <EmptyOrder />;
   return (
     <StyledOrder>
       <OrderGoBack onClick={() => navigate(-1)}>

@@ -69,7 +69,6 @@ export default function CoffeePage({ coffees }: MenuProps) {
         totalPrice: sizePrice,
       };
       newItem.totalPrice = newItem.unitPrice * newItem.quantity;
-      console.log(typeof newItem.totalPrice);
     }
 
     if (newItem) {

@@ -28,7 +28,6 @@ export async function createOrder(newOrder) {
 
     if (!res.ok) throw Error();
     const { orderId } = await res.json();
-    console.log(orderId);
     return { id: orderId };
   } catch {
     throw Error("Failed creating your order");

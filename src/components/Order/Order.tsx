@@ -105,7 +105,7 @@ function Order() {
 
         <OrderCart>
           {items.map((item) => (
-            <OrderItem item={item} key={item.coffee_id} />
+            <OrderItem item={item} key={`${item.id}_${item.size}`} />
           ))}
         </OrderCart>
 
