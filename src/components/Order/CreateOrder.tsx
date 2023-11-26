@@ -2,11 +2,15 @@ import { Form, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/coffeeApi";
 import { redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getCart } from "../Cart/cartSlice";
+import { clearCart, getCart } from "../Cart/cartSlice";
 import EmptyOrder from "./EmptyOrder";
 import { getTotalCartPrice } from "../Cart/cartSlice";
 import { GoBackIcon } from "../UI/ErrorText";
 import { useNavigate } from "react-router-dom";
+import { fetchAddress } from "../StoreLocator/citiesSlice";
+import { RootState } from "../../store";
+import { useDispatch } from "../../store";
+import { useEffect } from "react";
 import {
   StyledOrder,
   OrderInput,
@@ -17,6 +21,7 @@ import {
   InputWrapper,
   InputLabel,
 } from "./StyledOrder";
+import store from "../../store";
 
 function CreateOrder() {
   const navigate = useNavigate();
@@ -25,7 +30,17 @@ function CreateOrder() {
 
   const items = useSelector(getCart);
   const totalPrice = useSelector(getTotalCartPrice);
-
+  const dispatch = useDispatch();
+  const userData = useSelector((state: RootState) => state.user);
+  const currentAddress = useSelector(
+    (state: RootState) => state.cities.address
+  );
+  console.log(currentAddress);
+  useEffect(() => {
+    if (!currentAddress) {
+      dispatch(fetchAddress());
+    }
+  }, [dispatch, currentAddress]);
   if (!items.length) return <EmptyOrder />;
   return (
     <StyledOrder>
@@ -34,9 +49,14 @@ function CreateOrder() {
         Go Back
       </OrderGoBack>
       <OrderFormWrapper>
+        <h2>{userData.username}, Your current details are as follows:</h2>
+        {/* <p>Phone Number: {userData.phoneNumber}</p>
+        <p>Personal Number: {userData.personalNumber}</p> */}
+        <p>Address: {currentAddress}</p>
         <h2>
           Confirm your current details to ensure a smooth delivery process
         </h2>
+        <button onClick={() => dispatch(fetchAddress())}>get position</button>
 
         <Form method="POST">
           <InputsContainer>
@@ -89,7 +109,7 @@ export async function action({ request }: { request: Request }) {
 
   if (Object.keys(errors).length > 0) return errors;
   const newOrder = await createOrder(order);
-
+  store.dispatch(clearCart());
   return redirect(`/order/${newOrder.id}`);
 }
 

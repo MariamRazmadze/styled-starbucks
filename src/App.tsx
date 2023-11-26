@@ -1,7 +1,5 @@
 import GlobalStyles from "./moreStyles/GlobalStyles";
 import { ThemeProvider } from "styled-components";
-import { CitiesProvider } from "./contexts/CitiesContext";
-
 import { lazy, Suspense } from "react";
 
 const Homepage = lazy(() => import("./components/HomePage/Homepage"));
@@ -69,12 +67,10 @@ const router = createBrowserRouter(routes);
 export default function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <CitiesProvider>
-        <GlobalStyles />
-        <Suspense fallback={<Loader />}>
-          <RouterProvider router={router} />
-        </Suspense>
-      </CitiesProvider>
+      <GlobalStyles />
+      <Suspense fallback={<Loader />}>
+        <RouterProvider router={router} />
+      </Suspense>
     </ThemeProvider>
   );
 }

@@ -1,9 +1,34 @@
-import { useCities } from "../../contexts/useCities";
+import { useSelector, useDispatch as useReduxDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { useEffect } from "react";
+import { RootState } from "../../store";
+import { divIcon } from "leaflet";
+import {
+  getCities,
+  getMapPosition,
+  getCurrentCity,
+  fetchAddress,
+} from "./citiesSlice";
 import styles from "./Map.module.css";
 import { useMap } from "react-leaflet/hooks";
 import { TileLayer, Marker, Popup, MapContainer } from "react-leaflet";
+
+const coffeeIcon = divIcon({
+  className: "custom-icon",
+  iconSize: [30, 50],
+  html: `<div style="background-color: #00704A; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;"><img src="/sizes/grande-active.svg" width="25px"/></div>`,
+});
+
 export default function Map() {
-  const { cities, mapPosition } = useCities();
+  const dispatch = useReduxDispatch<AppDispatch>();
+  const cities = useSelector((state: RootState) => getCities(state));
+  const mapPosition = useSelector((state: RootState) => getMapPosition(state));
+  const currentCity = useSelector((state: RootState) => getCurrentCity(state));
+  useEffect(() => {
+    dispatch(fetchAddress());
+  }, [dispatch]);
+
+  console.log(currentCity);
 
   return (
     <div className={styles.mapContainer}>
@@ -21,12 +46,18 @@ export default function Map() {
           <Marker
             position={[city.position.lat, city.position.lng]}
             key={city.id}
+            icon={coffeeIcon}
           >
             <Popup>
               <span>{city.cityName}</span>
             </Popup>
           </Marker>
         ))}
+        {/* <Marker position={mapPosition}>
+          <Popup>
+            <span>Your current position</span>
+          </Popup>
+        </Marker> */}
         <ChangeCenter position={mapPosition} />
       </MapContainer>
     </div>

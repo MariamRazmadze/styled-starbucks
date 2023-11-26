@@ -28,6 +28,7 @@ export const CityIcons = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-left: 0.5rem;
+  width: 90px;
 `;
 
 export const DeleteButton = styled.button`

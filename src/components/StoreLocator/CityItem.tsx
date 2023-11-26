@@ -1,8 +1,10 @@
 import { CityData } from "./CityList";
 import { PiHeartLight } from "react-icons/pi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { useCities } from "../../contexts/useCities";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
 import { Link } from "react-router-dom";
+import { setCurrentCity, setMapPosition } from "./citiesSlice";
 import {
   CityIcon,
   CityItemContainer,
@@ -31,14 +33,16 @@ const isStoreOpen = (open: string, close: string) => {
 
 export default function CityItem({ city }: { city: CityData }) {
   const { cityName, address, id, storeHours } = city;
-  const { currentCity, setCurrentCity, setMapPosition } = useCities();
+  const dispatch = useDispatch();
+  const currentCity = useSelector(
+    (state: RootState) => state.cities.currentCity
+  );
   const storeStatus = isStoreOpen(storeHours.open, storeHours.close);
 
   const handleClick = () => {
-    setCurrentCity(city);
-    setMapPosition([city.position.lat, city.position.lng]);
+    dispatch(setCurrentCity(city));
+    dispatch(setMapPosition([city.position.lat, city.position.lng]));
   };
-
   return (
     <li onClick={handleClick}>
       <Link to={`?lat=${city.position.lat}&lng=${city.position.lng}`}>
@@ -67,7 +71,9 @@ export default function CityItem({ city }: { city: CityData }) {
                 <AiOutlineExclamationCircle />
               </CityIcon>
             </CityIcons>
-            <CityButton>Order here</CityButton>
+            {currentCity && id === currentCity.id && (
+              <CityButton>Order here</CityButton>
+            )}
           </div>
         </CityItemContainer>
       </Link>
