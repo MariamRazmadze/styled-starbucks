@@ -3,12 +3,7 @@ import Message from "./Message";
 import { useSelector } from "react-redux";
 import { useDispatch } from "../../store";
 import { RootState } from "../../store";
-import {
-  getCities,
-  fetchCities,
-  fetchAddress,
-  getAddress,
-} from "./citiesSlice";
+import { getCities, fetchCities, fetchAddress } from "./citiesSlice";
 import { useEffect, useState } from "react";
 import CityItem from "./CityItem";
 import styled from "styled-components";
@@ -25,6 +20,10 @@ const StyledCityList = styled.ul`
 
   &::-webkit-scrollbar {
     width: 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 2rem;
   }
 `;
 
@@ -71,7 +70,7 @@ const CityList = () => {
   const dispatch = useDispatch();
   const cities = useSelector((state: RootState) => getCities(state));
   const isLoading = useSelector((state: RootState) => state.cities.isLoading);
-  const [userCity, setUserCity] = useState(null);
+  const [userCity, setUserCity] = useState<string | null>(null);
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isSearchMade, setIsSearchMade] = useState(false);
@@ -81,7 +80,7 @@ const CityList = () => {
     dispatch(fetchAddress()).then((action) => {
       if (fetchAddress.fulfilled.match(action)) {
         const city = action.payload.address.split(",")[1].trim();
-        setUserCity(city); //
+        setUserCity(city);
       }
     });
   }, [dispatch]);

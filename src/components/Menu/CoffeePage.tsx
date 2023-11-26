@@ -56,8 +56,6 @@ export default function CoffeePage({ coffees }: MenuProps) {
 
     if (coffee) {
       const sizePrice = coffee.prices[selectedSize.toLowerCase()];
-      console.log("selectedSize", selectedSize);
-      console.log("sizePrice", sizePrice);
       newItem = {
         coffeeId: coffee.id,
         name: coffee.name,

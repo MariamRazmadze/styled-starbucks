@@ -8,6 +8,9 @@ const Layout = styled.div`
   overscroll-behavior-y: none;
   display: flex;
   position: relative;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export default function AppLayout() {

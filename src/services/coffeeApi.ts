@@ -1,5 +1,5 @@
-// const API_URL = "https://starbucksapi.pythonanywhere.com";
-const API_URL = "http://127.0.0.1:5000/";
+const API_URL = "https://starbucksapi.pythonanywhere.com";
+// const API_URL = "http://127.0.0.1:5000/";
 
 export async function getCoffees() {
   const res = await fetch(`${API_URL}/coffees`);

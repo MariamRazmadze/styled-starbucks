@@ -71,4 +71,7 @@ export const CityItemContainer = styled.div<{ $isActive: boolean }>`
   text-decoration: none;
   background-color: ${(props) => (props.$isActive ? "#e5f0ec" : "initial")};
   border: ${(props) => (props.$isActive ? "2px solid #006241" : "none")};
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;

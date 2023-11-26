@@ -3,12 +3,7 @@ import { AppDispatch } from "../../store";
 import { useEffect } from "react";
 import { RootState } from "../../store";
 import { divIcon } from "leaflet";
-import {
-  getCities,
-  getMapPosition,
-  getCurrentCity,
-  fetchAddress,
-} from "./citiesSlice";
+import { getCities, getMapPosition, fetchAddress } from "./citiesSlice";
 import styles from "./Map.module.css";
 import { useMap } from "react-leaflet/hooks";
 import { TileLayer, Marker, Popup, MapContainer } from "react-leaflet";
@@ -23,12 +18,9 @@ export default function Map() {
   const dispatch = useReduxDispatch<AppDispatch>();
   const cities = useSelector((state: RootState) => getCities(state));
   const mapPosition = useSelector((state: RootState) => getMapPosition(state));
-  const currentCity = useSelector((state: RootState) => getCurrentCity(state));
   useEffect(() => {
     dispatch(fetchAddress());
   }, [dispatch]);
-
-  console.log(currentCity);
 
   return (
     <div className={styles.mapContainer}>

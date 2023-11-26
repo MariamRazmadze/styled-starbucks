@@ -9,6 +9,12 @@ const StyledSidebar = styled.div`
   flex-direction: column;
   align-items: center;
   height: calc(100vh - 4.8rem);
+
+  @media (max-width: 768px) {
+    flex-basis: 100%;
+    max-height: 50%;
+    overflow: auto;
+  }
 `;
 
 export default function Sidebar() {

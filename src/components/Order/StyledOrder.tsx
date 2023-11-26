@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { StyledCart } from "../Cart/StyledCart";
 import { WaveButton } from "../Auth/StyledAuth";
 import { GoBackButton } from "../UI/ErrorText";
-import { CardStyles } from "../UI/Card";
+import { CardStyles } from "../UI/CardStyles";
 import { CartHeader, BackToMenu } from "../Cart/StyledCart";
 import { Button } from "../UI/Button";
 
