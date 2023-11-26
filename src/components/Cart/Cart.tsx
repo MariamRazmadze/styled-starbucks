@@ -75,7 +75,7 @@ function Cart() {
         <div>
           {cart.length ? (
             cart.map((item: CartItemType) => (
-              <CartItem item={item} key={item.coffeeId} />
+              <CartItem item={item} key={`${item.coffeeId}-${item.size}`} />
             ))
           ) : (
             <EmptyCart />

@@ -81,7 +81,6 @@ const authSlice = createSlice({
         state.tokenExpirationTime = action.payload.expirationTime;
         // state.username = action.payload.username;
         state.username = action.meta.arg.username;
-        console.log("username", state.username);
       })
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
