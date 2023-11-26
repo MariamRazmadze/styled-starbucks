@@ -72,6 +72,7 @@ export const MobileMenu = styled.div<MobileMenuProps>`
     line-height: 3;
     border-bottom: #777777 solid 1px;
     padding-bottom: 10px;
+    padding-left: 0;
     margin-bottom: 30px;
   }
   button {
@@ -101,4 +102,10 @@ export const MobileMenu = styled.div<MobileMenuProps>`
     css`
       transform: translateX(100%);
     `}
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 `;

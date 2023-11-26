@@ -1,7 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
+type GlobalStyleProps = {
+  modalOpen: boolean;
+};
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = createGlobalStyle<GlobalStyleProps>`
+
 * {
   margin: 0;
   padding: 0;
@@ -21,7 +25,7 @@ body {
   min-height: 100vh;
   padding-bottom: 6rem;
   overflow-x: hidden;
-
+  position: ${(props) => (props.modalOpen ? "fixed" : "static")};
 }
 
 

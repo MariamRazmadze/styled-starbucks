@@ -11,7 +11,7 @@ export const Nav = styled.nav`
   font-size: 14px;
 `;
 
-export const NavbarBrand = styled.div`
+export const StyledNavbarBrand = styled.div`
   @media (max-width: 768px) {
     img {
       width: 40px;
