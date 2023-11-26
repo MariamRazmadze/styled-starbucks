@@ -4,6 +4,7 @@ import { WaveButton } from "../Auth/StyledAuth";
 import { GoBackButton } from "../UI/ErrorText";
 import { CardStyles } from "../UI/Card";
 import { CartHeader, BackToMenu } from "../Cart/StyledCart";
+import { Button } from "../UI/Button";
 
 export const StyledOrder = styled(StyledCart)`
   display: flex;
@@ -152,4 +153,23 @@ export const OrderCartHeader = styled(CartHeader)`
 export const OrderBackToMenu = styled(BackToMenu)`
   color: ${({ theme }) => theme.primaryColor};
   text-decoration: none;
+`;
+export const FetchAddressWrapper = styled.span`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+export const FetchAddressButton = styled(Button)`
+  position: absolute;
+  right: 0;
+  height: 100%;
+  font-size: 14px;
+  border: 2px solid #cbd5e0;
+  color: #718096;
+  &:hover,
+  &:focus {
+    background-color: #cbd5e0;
+    color: #2d3748;
+    box-shadow: 0 0 0 2px #edf2f7;
+  }
 `;

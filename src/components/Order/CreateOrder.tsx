@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { fetchAddress } from "../StoreLocator/citiesSlice";
 import { RootState } from "../../store";
 import { useDispatch } from "../../store";
-import { useEffect } from "react";
+import { useState } from "react";
 import {
   StyledOrder,
   OrderInput,
@@ -20,6 +20,8 @@ import {
   OrderFormWrapper,
   InputWrapper,
   InputLabel,
+  FetchAddressButton,
+  FetchAddressWrapper,
 } from "./StyledOrder";
 import store from "../../store";
 
@@ -32,15 +34,22 @@ function CreateOrder() {
   const totalPrice = useSelector(getTotalCartPrice);
   const dispatch = useDispatch();
   const userData = useSelector((state: RootState) => state.user);
-  const currentAddress = useSelector(
-    (state: RootState) => state.cities.address
-  );
-  console.log(currentAddress);
-  useEffect(() => {
-    if (!currentAddress) {
-      dispatch(fetchAddress());
-    }
-  }, [dispatch, currentAddress]);
+  const [address, setAddress] = useState("");
+  const [error, setError] = useState("");
+
+  const fetchAndSetAddress = () => {
+    dispatch(fetchAddress()).then((action) => {
+      if (fetchAddress.fulfilled.match(action)) {
+        setAddress(action.payload.address);
+      } else if (fetchAddress.rejected.match(action)) {
+        if (action.error.message) {
+          setError(action.error.message);
+        } else {
+          setError("Unexpected error occurred");
+        }
+      }
+    });
+  };
   if (!items.length) return <EmptyOrder />;
   return (
     <StyledOrder>
@@ -49,15 +58,10 @@ function CreateOrder() {
         Go Back
       </OrderGoBack>
       <OrderFormWrapper>
-        <h2>{userData.username}, Your current details are as follows:</h2>
-        {/* <p>Phone Number: {userData.phoneNumber}</p>
-        <p>Personal Number: {userData.personalNumber}</p> */}
-        <p>Address: {currentAddress}</p>
         <h2>
-          Confirm your current details to ensure a smooth delivery process
+          {userData.username}, enter your current details to ensure a smooth
+          delivery process
         </h2>
-        <button onClick={() => dispatch(fetchAddress())}>get position</button>
-
         <Form method="POST">
           <InputsContainer>
             <InputWrapper>
@@ -72,10 +76,28 @@ function CreateOrder() {
               <InputLabel>Id Number: </InputLabel>
               <OrderInput type="text" name="id_number" required />
             </InputWrapper>
-            <InputWrapper>
-              <InputLabel>Address: </InputLabel>
-              <OrderInput type="text" name="address" required />
-            </InputWrapper>
+            <FetchAddressWrapper>
+              <InputWrapper>
+                <InputLabel>Address: </InputLabel>
+                <OrderInput
+                  type="text"
+                  name="address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  required
+                />
+                <FetchAddressButton
+                  onClick={(e) => {
+                    e.preventDefault();
+                    fetchAndSetAddress();
+                  }}
+                >
+                  Get location
+                </FetchAddressButton>
+
+                {error && <div style={{ color: "red" }}>{error}</div>}
+              </InputWrapper>
+            </FetchAddressWrapper>
             <div>
               <input type="hidden" name="items" value={JSON.stringify(items)} />
               <input type="hidden" name="total_price" value={totalPrice} />
