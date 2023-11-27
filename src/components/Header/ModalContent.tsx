@@ -14,9 +14,10 @@ import { ButtonsContainer } from "./HamburgerMenu";
 
 type ModalContentProps = {
   isOpen: boolean;
+  toggleMenu: () => void;
 };
 
-export function ModalContent({ isOpen }: ModalContentProps) {
+export function ModalContent({ isOpen, toggleMenu }: ModalContentProps) {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,26 +31,29 @@ export function ModalContent({ isOpen }: ModalContentProps) {
     <MobileMenu $isOpen={isOpen}>
       <ul>
         <li>
-          <Link to="/menu">Menu</Link>
+          <Link to="/menu" onClick={toggleMenu}>
+            Menu
+          </Link>
         </li>
         <li>
-          <Link to="/rewards">Rewards</Link>
+          <Link to="/rewards" onClick={toggleMenu}>
+            Rewards
+          </Link>
         </li>
         <li>
-          <Link to="/quiz">Coffee Quiz</Link>
-        </li>
-        <li>
-          <Link to="/gift">Gift Cards</Link>
+          <Link to="/gift" onClick={toggleMenu}>
+            Gift Cards
+          </Link>
         </li>
       </ul>
       <div>
         {!isLoggedIn ? (
           <>
             <ButtonsContainer>
-              <Link to="/login">
+              <Link to="/login" onClick={toggleMenu}>
                 <LightButton>Log in</LightButton>
               </Link>
-              <Link to="/register">
+              <Link to="/register" onClick={toggleMenu}>
                 <DarkButton>Join Now</DarkButton>
               </Link>
             </ButtonsContainer>
@@ -70,7 +74,7 @@ export function ModalContent({ isOpen }: ModalContentProps) {
         )}
 
         <div>
-          <Link to="/store-locator">
+          <Link to="/store-locator" onClick={toggleMenu}>
             <svg
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"

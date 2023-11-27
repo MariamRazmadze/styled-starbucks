@@ -1,4 +1,5 @@
 import { useState } from "react";
+import MainQuiz from "../CoffeeQuiz/MainQuiz";
 import { v4 as uuidv4 } from "uuid";
 import { Tab } from "./Tab";
 import { TabContent } from "./TabContent";
@@ -25,25 +26,28 @@ export default function RewardSteps({ content }: RewardStepsProps) {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <RewardsContainer>
-      <TitleWrapper>
-        <RewardsTitle>Get your favorites for free</RewardsTitle>
-      </TitleWrapper>
-      <RewardButtons>
-        {content.map((item, index) => (
-          <Tab
-            key={uuidv4()}
-            num={index}
-            activeTab={activeTab}
-            onClick={setActiveTab}
-            item={item}
-          />
-        ))}
-        <Underline $left={activeTab * 20} />
-      </RewardButtons>
+    <>
+      <RewardsContainer>
+        <TitleWrapper>
+          <RewardsTitle>Get your favorites for free</RewardsTitle>
+        </TitleWrapper>
+        <RewardButtons>
+          {content.map((item, index) => (
+            <Tab
+              key={uuidv4()}
+              num={index}
+              activeTab={activeTab}
+              onClick={setActiveTab}
+              item={item}
+            />
+          ))}
+          <Underline $left={activeTab * 20} />
+        </RewardButtons>
 
-      <TabContent item={content[activeTab]} />
-    </RewardsContainer>
+        <TabContent item={content[activeTab]} />
+      </RewardsContainer>
+      <MainQuiz />
+    </>
   );
 }
 

@@ -11,9 +11,6 @@ export function NavLinks() {
         <Link to="/rewards">Rewards</Link>
       </NavListItem>
       <NavListItem>
-        <Link to="/quiz">Coffee Quiz</Link>
-      </NavListItem>
-      <NavListItem>
         <Link to="/gift">Gift Cards</Link>
       </NavListItem>
     </>

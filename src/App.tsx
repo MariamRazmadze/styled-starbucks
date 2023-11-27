@@ -4,7 +4,6 @@ import { lazy, Suspense } from "react";
 
 const Homepage = lazy(() => import("./components/HomePage/Homepage"));
 const MainMenu = lazy(() => import("./components/Menu/MainMenu"));
-const MainQuiz = lazy(() => import("./components/CoffeeQuiz/MainQuiz"));
 const Auth = lazy(() => import("./components/Auth/Auth"));
 const RewardSteps = lazy(() => import("./components/Rewards/RewardSteps"));
 const AppLayout = lazy(() => import("./components/StoreLocator/AppLayout"));
@@ -47,7 +46,6 @@ const routes = [
       { path: "login", element: <Auth defaultIsLogin={true} /> },
       { path: "register", element: <Auth defaultIsLogin={false} /> },
       { path: "rewards", element: <RewardSteps content={rewardsData} /> },
-      { path: "quiz", element: <MainQuiz /> },
       {
         path: "/store-locator",
         element: <AppLayout />,

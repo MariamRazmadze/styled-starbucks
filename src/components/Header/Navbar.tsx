@@ -111,7 +111,7 @@ export default function Navbar() {
 
         {isOpen && (
           <NavbarModal isOpen={isOpen} onRequestClose={toggleMenu}>
-            <ModalContent isOpen={isOpen} />
+            <ModalContent isOpen={isOpen} toggleMenu={toggleMenu} />
           </NavbarModal>
         )}
       </Nav>
